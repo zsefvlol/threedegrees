@@ -1,20 +1,23 @@
 <?php
 return  array(
-    'SESSION_AUTO_START'    =>  true,
-    'COOKIE_PREFIX'         =>  SITE_PREFIX,
-    'URL_CASE_INSENSITIVE'  =>  true,
-    'DB_NAME'               =>  '',
-    'DB_TYPE'               =>  'mysql',
-	'DB_HOST'               =>  '',
-	'DB_USER'               =>  '',
-	'DB_PWD'                =>  '',
-    'DB_PORT'               =>  '3306',
-    'DB_PREFIX'             =>  'tb_',
+            'SESSION_AUTO_START'    =>  true,
+            'COOKIE_PREFIX'         =>  SITE_PREFIX,
+            'URL_CASE_INSENSITIVE'  =>  true,
+            'DB_NAME'               =>  '',
+            'DB_TYPE'               =>  'mysql',
+            'DB_HOST'               =>  '',
+            'DB_USER'               =>  '',
+            'DB_PWD'                =>  '',
+            'DB_PORT'               =>  '3306',
+            'DB_PREFIX'             =>  'tb_',
 
-    'WX_APP_ID'             =>  '',
-    'WX_TOKEN'              =>  '',
-    'WX_APP_SECRET'         =>  '',
+            'WX_APP_ID'             =>  '',
+            'WX_TOKEN'              =>  '',
+            'WX_APP_SECRET'         =>  '',
 
-	'MODULE_ALLOW_LIST'    =>    array('Home','Api'),
-    'DEFAULT_MODULE'        =>  'Home',
+            'MODULE_ALLOW_LIST'    =>    array('Home','Api'),
+            'DEFAULT_MODULE'        =>  'Home',
+
+    		'ZERO_DEGREE_UID'		=>	1,
+
 );

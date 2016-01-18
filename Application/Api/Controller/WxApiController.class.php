@@ -33,7 +33,6 @@ class WxApiController extends RestCommonController
     private function _handleTextMessage(){
         $message = ImWx::getRequest();
         ImWxTextDispatcher::dispatch(trim($message['Content']));
-        ImWx::fetchTextResult($this->_getTestText());
     }
 
     //处理事件消息

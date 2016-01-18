@@ -10,7 +10,6 @@ class RestCommonController extends RestController {
     public function _empty(){
         $this->responseError(new CommonException('200202'));
     }
-
     protected function responseError(CommonException $exception){
         $this->response(array(
             'error_code'      =>  $exception->getCode(),
@@ -38,7 +37,7 @@ class RestCommonController extends RestController {
     protected function encodeData($data,$type='') {
         if('json' == $type) {
             // 返回JSON数据格式到客户端 包含状态信息
-            $data = json_encode($data, JSON_UNESCAPED_UNICODE);
+            $data = json_encode($data);
             if(I('get.jsonpcallback'))
                 $data = I('get.jsonpcallback').'('.$data . ')';
             if(I('get.fileiframetransport',''))
