@@ -2,9 +2,8 @@
 
 namespace Api\Controller;
 use Api\Exception\CommonException;
-use Think\Controller;
 
-class RestCommonController extends Controller {
+class RestCommonController extends RestController {
 
     public $uid = false;
 
