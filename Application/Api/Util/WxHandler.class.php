@@ -13,6 +13,7 @@ use Common\Util\ImWx;
 class WxHandler{
 
     public static function handleCode($code){
+        ImWx::fetchTextResult($code);
         $openid = ImWx::getRequestUserId();
         $userInfo = D('User')->getUserFromOpenId($openid);
         if($userInfo['verified'] == 1)
