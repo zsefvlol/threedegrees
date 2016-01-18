@@ -63,7 +63,7 @@ class ImWxTextDispatcher{
 
     static function setConfig($configArray = array()){
         if (!$configArray)
-            $configArray = require_once dirname(__FILE__) .'../Conf/TextDispatcherConfig.php';
+            $configArray = require_once dirname(__FILE__) .'/../Conf/TextDispatcherConfig.php';
         self::$config = $configArray;
     }
 
