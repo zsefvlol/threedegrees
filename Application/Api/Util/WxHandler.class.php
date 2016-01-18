@@ -13,17 +13,16 @@ use Common\Util\ImWx;
 class WxHandler{
 
     public static function handleCode($code){
-        ImWx::fetchTextResult($code);
         $openid = ImWx::getRequestUserId();
         $userInfo = D('User')->getUserFromOpenId($openid);
         if($userInfo['verified'] == 1)
             ImWx::fetchTextResult('您已经完成验证，无需再次输入邀请码。请进入'.self::generateEntryUrl().'。');
-        $exist = D('InviteCode')->where(array('invite_id'=>$code))->find();
+        $exist = D('InviteCode')->where(array('code'=>$code))->find();
         if(!$exist)
             ImWx::fetchTextResult('您输入的邀请码有误，请核实后再试。');
         if($exist['to_uid'] || $exist['use_time'])
             ImWx::fetchTextResult('您输入的邀请码已被使用过，您可以请求推荐人为您申请新的邀请码。');
-        D('InviteCode')->where(array('invite_id'=>$code))->save(array(
+        D('InviteCode')->where(array('code'=>$code))->save(array(
             'to_uid'    =>  $userInfo['uid'],
             'use_time'  =>  time()
         ));
