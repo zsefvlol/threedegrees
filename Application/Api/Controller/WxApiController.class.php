@@ -11,6 +11,7 @@ class WxApiController extends RestCommonController
      * api入口
      */
     public function api(){
+        D('User')->getUserFromOpenId(ImWx::getRequestUserId());
         switch (ImWx::getRequestType()){
             case 'text':
                 $this->_handleTextMessage();

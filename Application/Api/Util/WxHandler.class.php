@@ -7,7 +7,6 @@
  */
 namespace Api\Util;
 
-use Api\Model\UserModel;
 use Common\Util\Degree;
 use Common\Util\ImWx;
 
