@@ -14,7 +14,7 @@ class IndexController extends Controller {
     }
 
     public function index(){
-        if($this->_is_wechat() || !cookie('wechat_id')){
+        if(!$this->_is_wechat() || !cookie('wechat_id')){
             $this->redirect('index/error');
             exit();
         }

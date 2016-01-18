@@ -30,7 +30,7 @@ class WxHandler{
         D('User')->where(array('uid'=>$userInfo['uid']))->save(array(
             'verified'  =>  1,
             //当前仅允许1度邀请12个人
-            'degree'    =>  $degree == 1 ? 12 : 0,
+            'allow_invite_count'    =>  $degree == 1 ? 12 : 0,
         ));
         ImWx::fetchTextResult('验证成功。请进入'.self::generateEntryUrl().'。');
     }
