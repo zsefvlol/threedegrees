@@ -1,0 +1,27 @@
+{
+  "name": "threedegrees",
+  "version": "1.0.0",
+  "description": "Repository for WeChat account thethreedegrees.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zsefvlol/threedegrees.git"
+  },
+  "keywords": [
+    "threedegrees"
+  ],
+  "author": "zsefvlol, AsterOcclu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zsefvlol/threedegrees/issues"
+  },
+  "homepage": "https://github.com/zsefvlol/threedegrees#readme",
+  "dependencies": {
+    "react-weui": "^0.2.0",
+    "react-weui-form": "^0.1.2",
+    "weui": "^0.2.3"
+  }
+}
