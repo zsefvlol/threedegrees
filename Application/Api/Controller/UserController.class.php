@@ -11,7 +11,7 @@ class UserController extends RestCommonController {
         $result = D('User')->find($this->uid);
         $invite_list = D('InviteCode')->where(array('from_uid'=>$this->uid))
             ->join('left join tb_user_info on tb_invite_code.to_uid = tb_user_info.uid')
-            ->field('tb_invite_code.*,truename,relation')->select();
+            ->field('tb_invite_code.*,truename,relation,is_single')->select();
         $result['used_code_count'] = 0;
         $result['generated_code_count'] = 0;
         foreach($invite_list as $invite){
