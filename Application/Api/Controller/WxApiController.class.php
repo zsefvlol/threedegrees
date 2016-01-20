@@ -1,17 +1,19 @@
 <?php
 namespace Api\Controller;
 use Api\Exception\CommonException;
+use Api\Util\WxHandler;
 use Common\Util\ImWx;
 use Common\Util\ImWxTextDispatcher;
 
 class WxApiController extends RestCommonController
 {
 
+    private $userInfo;
     /**
      * api入口
      */
     public function api(){
-        D('User')->getUserFromOpenId(ImWx::getRequestUserId());
+        $this->userInfo = D('User')->getUserFromOpenId(ImWx::getRequestUserId());
         switch (ImWx::getRequestType()){
             case 'text':
                 $this->_handleTextMessage();
@@ -34,6 +36,11 @@ class WxApiController extends RestCommonController
     private function _handleTextMessage(){
         $message = ImWx::getRequest();
         ImWxTextDispatcher::dispatch(trim($message['Content']));
+        if($this->userInfo['verified']){
+            ImWx::fetchTextResult('您好，请进入'.WxHandler::generateEntryUrl('个人中心'));
+        }else{
+            ImWx::fetchTextResult('您好，本服务采用邀请制，您需要先输入邀请码，验证通过后方可使用。');
+        }
     }
 
     //处理事件消息
