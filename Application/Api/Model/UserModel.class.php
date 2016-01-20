@@ -11,7 +11,8 @@ class UserModel extends Model{
         else {
             $uid = $this->add(array(
                 'openid'    =>  $openid,
-                'create_time'   =>  date('Y-m-d H:i:s')
+                'create_time'   =>  date('Y-m-d H:i:s'),
+                'is_single' =>  -1
             ));
             $this->createUserInfoItem($uid);
             return $this->getUserFromOpenId($openid);
