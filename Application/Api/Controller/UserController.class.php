@@ -5,6 +5,8 @@ use Api\Exception\CommonException;
 
 class UserController extends RestCommonController {
 
+    protected $allowMethod = array('get','post','put');
+
     public function profile_get(){
         if(!$this->uid)
             $this->responseError(new CommonException('200102'));
