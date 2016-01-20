@@ -5,7 +5,7 @@ use Api\Exception\CommonException;
 
 class UserController extends RestCommonController {
 
-    public function get_user_info(){
+    public function profile_get(){
         if(!$this->uid)
             $this->responseError(new CommonException('200102'));
         $result = D('User')->find($this->uid);
