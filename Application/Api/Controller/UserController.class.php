@@ -3,11 +3,11 @@ namespace Api\Controller;
 
 use Api\Exception\CommonException;
 
-class UserController extends RestController {
+class UserController extends RestCommonController {
 
     protected $allowMethod = array('get','post','put');
 
-    public function profile_get(){
+    public function profile_get_json(){
         if(!$this->uid)
             $this->responseError(new CommonException('200102'));
         $result = D('User')->find($this->uid);
