@@ -2,6 +2,7 @@
 namespace Api\Controller;
 
 use Api\Exception\CommonException;
+use Common\Util\Degree;
 
 class UserController extends RestCommonController {
 
@@ -28,10 +29,10 @@ class UserController extends RestCommonController {
             $result['user_info'] = D('UserInfo')->where(array('uid'=>$this->uid))->find();
         }
 
-        $like_me = D('Like')->where(array('to_uid'=>$this->uid))
+        $like_me = D('Like')->where(array('to_uid'=>$this->uid, 'like_status'=>1))
             ->join('left join tb_user_info on tb_like.from_uid = tb_user_info.uid')
             ->field('truename,relation,uid')->select();
-        $i_like = D('Like')->where(array('from_uid'=>$this->uid))
+        $i_like = D('Like')->where(array('from_uid'=>$this->uid, 'like_status'=>1))
             ->join('left join tb_user_info on tb_like.to_uid = tb_user_info.uid')
             ->field('truename,relation,uid')->select();
 
@@ -42,7 +43,41 @@ class UserController extends RestCommonController {
     }
 
     private function others_profile($uid){
-        // @TODO fetch others uid
+        $myUser = D('User')->find($this->uid);
+        //非验证用户无法访问
+        if($myUser['verified'] != 1)
+            $this->responseError(new CommonException('200101'));
+        $myUserInfo = D('UserInfo')->find($this->uid);
+        //未选择身份无法访问
+        if($myUserInfo['is_single'] == -1)
+            $this->responseError(new CommonException('200101'));
+        //介绍人身份
+        if($myUserInfo['is_single'] == 0){
+            //只能访问自己邀请的人的信息
+            $myInvites = D('InviteCode')->where(array('from_uid'=>$this->uid))->select();
+            $myInviteUids = array();
+            foreach ($myInvites as $value)
+                if($value['to_uid'])
+                    $myInviteUids[] = $value['to_uid'];
+            if(!in_array($uid, $myInviteUids))
+                $this->responseError(new CommonException('200101'));
+        }
+
+        $result = D('User')->where(array('verified'=>1))->find($uid);
+        //不允许访问错误的uid，或者未认证的uid
+        if(!$result) $this->responseError(new CommonException('200101'));
+        unset($result['openid']);
+        $result['user_info'] = D('UserInfo')->where(array('uid'=>$uid))->find();
+        if(!$result['user_info']){
+            D('User')->createUserInfoItem($uid);
+            $result['user_info'] = D('UserInfo')->where(array('uid'=>$uid))->find();
+        }
+        //不允许访问介绍人或未选身份人的信息
+        if($result['user_info']['is_single'] != 1){
+            $this->responseError(new CommonException('200101'));
+        }
+        $result['relation_text'] = Degree::getRelationText($this->uid, $uid);
+        $this->responseSuccess($result);
     }
 
     public function profile_post(){
