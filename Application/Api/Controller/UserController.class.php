@@ -10,7 +10,7 @@ class UserController extends RestCommonController {
             $this->responseError(new CommonException('200102'));
         $result = D('User')->find($this->uid);
         $invite_list = D('InviteCode')->where(array('from_uid'=>$this->uid))
-            ->join('left join tb_user_info on tb_invite_code.uid = tb_user_info.uid')
+            ->join('left join tb_user_info on tb_invite_code.to_uid = tb_user_info.uid')
             ->field('tb_invite_code.*,truename,relation')->select();
         $result['used_code_count'] = 0;
         $result['generated_code_count'] = 0;
