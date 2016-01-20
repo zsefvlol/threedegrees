@@ -3,7 +3,7 @@ namespace Api\Controller;
 
 use Api\Exception\CommonException;
 
-class UserController extends RestCommonController {
+class UserController extends RestController {
 
     protected $allowMethod = array('get','post','put');
 
