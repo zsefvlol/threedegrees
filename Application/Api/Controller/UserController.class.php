@@ -3,6 +3,7 @@ namespace Api\Controller;
 
 use Api\Exception\CommonException;
 use Common\Util\Degree;
+use Common\Util\Privilege;
 
 class UserController extends RestCommonController {
 
@@ -43,6 +44,7 @@ class UserController extends RestCommonController {
     }
 
     private function others_profile($uid){
+        /*
         $myUser = D('User')->find($this->uid);
         //非验证用户无法访问
         if($myUser['verified'] != 1)
@@ -76,16 +78,22 @@ class UserController extends RestCommonController {
         if($result['user_info']['is_single'] != 1){
             $this->responseError(new CommonException('200101'));
         }
+        */
+        $userInfos = Privilege::canIntereact($this->uid, $uid);
+        if(!$userInfos) $this->responseError(new CommonException('200101'));
+        $fromUserInfo = $userInfos[0];
+        $toUserInfo = $userInfos[1];
         //不允许单身访问同性的信息
-        if($myUserInfo['is_single']==1 && $result['user_info']['gender'] == $myUserInfo['gender'])
+        if($fromUserInfo['is_single']==1 && $toUserInfo['user_info']['gender'] == $fromUserInfo['user_info']['gender'])
             $this->responseError(new CommonException('200101'));
-        $result['relation_text'] = Degree::getRelationText($this->uid, $uid);
+        unset($toUserInfo['openid']);
+        $toUserInfo['relation_text'] = Degree::getRelationText($this->uid, $uid);
         D('ViewLog')->add(array(
             'from_uid'  =>  $this->uid,
             'to_uid'    =>  $uid,
             'view_time' =>  time()
         ));
-        $this->responseSuccess($result);
+        $this->responseSuccess($toUserInfo);
     }
 
     public function profile_post(){
@@ -108,20 +116,16 @@ class UserController extends RestCommonController {
     }
 
     public function list_get(){
-        $request = $_REQUEST;
+        $page = I('get.page',1);
+        $limit = I('get.limit',10);
         if(!$this->uid)
             $this->responseError(new CommonException('200102'));
-        $myUser = D('User')->find($this->uid);
-        //非验证用户无法访问
-        if($myUser['verified'] != 1)
-            $this->responseError(new CommonException('200101'));
-        $myUserInfo = D('UserInfo')->find($this->uid);
-        //未选择身份无法访问
-        if($myUserInfo['is_single'] == -1)
-            $this->responseError(new CommonException('200101'));
+        $fromUser = Privilege::isValidUser($this->uid);
+        if(!$fromUser) $this->responseError(new CommonException('200101'));
+
         //介绍人身份
         $filter = array('is_single' =>  '1');
-        if($myUserInfo['is_single'] == 0){
+        if($fromUser['user_info']['is_single'] == 0){
             //只能访问自己邀请的人的信息
             $myInvites = D('InviteCode')->where(array('from_uid'=>$this->uid))->select();
             $myInviteUids = array();
@@ -131,9 +135,11 @@ class UserController extends RestCommonController {
             $filter['uid'] = array('in',$myInviteUids);
         }else{
             //单身不允许访问同性
-            $filter['gender'] = $myUserInfo['gender'] == '男' ? '女' : '男';
+            $filter['gender'] = $fromUser['user_info']['gender'] == '男' ? '女' : '男';
         }
-        $list = D('UserInfo')->where($filter)->field('truename,birthday,current_location,future_location,hobby,self_comment')->select();
+        $list = D('UserInfo')->where($filter)
+            ->field('truename,birthday,current_location,future_location,hobby,self_comment')
+            ->page($page, $limit)->select();
 
         $this->responseSuccess($list);
 
