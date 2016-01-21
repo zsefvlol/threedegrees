@@ -27,6 +27,10 @@ export default class Home extends React.Component {
             label: 'Button',
             url: '#button'
         }, {
+            icon: IconArticle,
+            label: 'Form',
+            url: '#form'
+        }, {
             icon: IconCell,
             label: 'Cell',
             url: '#cell'

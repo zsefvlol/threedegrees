@@ -12,6 +12,7 @@ import 'weui';
 
 import Home from './pages/home/index';
 import Button from './pages/button/index';
+import Form from './pages/form/index';
 import Cell from './pages/cell/index';
 import Toast from './pages/toast/index';
 import Dialog from './pages/dialog/index';
@@ -25,6 +26,7 @@ ReactDOM.render((
     <Router>
         <Route path="/" component={Home}/>
         <Route path="button" component={Button}/>
+        <Route path="form" component={Form}/>
         <Route path="cell" component={Cell}/>
         <Route path="toast" component={Toast}/>
         <Route path="dialog" component={Dialog}/>
