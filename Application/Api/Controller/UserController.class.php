@@ -150,6 +150,26 @@ class UserController extends RestCommonController {
         cookie('wechat_id',$_GET['wechat_id']?$_GET['wechat_id']:'o0-6is0a3sVuq5851uFftcAC7KgI');
     }
 
+    public function generate_code_get(){
+        if(!$this->uid)
+            $this->responseError(new CommonException('200102'));
+        $userInfo = Privilege::isValidUser($this->uid);
+        $generatedCount = D('InviteCode')->where(array('from_uid'=>$this->uid))->count();
+        if($generatedCount >= $userInfo['allow_invite_count']){
+            $this->responseError(new CommonException('200104'));
+        }
+        $max_tried_time = 0;
+        while($max_tried_time++ < 10){
+            $code = rand(10000000,99999999);
+            $exist = D('InviteCode')->where(array('code'=>$code))->find();
+            if($exist) continue;
+            D('InviteCode')->add(array('code'=>$code,'from_uid'=>$this->uid,'create_time'=>time()));
+            $this->responseSuccess(array('code'=>$code));
+        }
+
+        $this->responseError(new CommonException('200401'));
+    }
+
 
 
 }

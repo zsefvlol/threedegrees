@@ -13,6 +13,7 @@ class CommonException extends \Exception{
         '200101'    =>  '您被禁止访问这个资源',
         '200102'    =>  '您尚未登录',
         '200103'    =>  '用户不存在',
+        '200104'    =>  '邀请码数量超过限制',
 
         //200200 Request error.
         '200201'    =>  '缺少字段或字段格式错误',
@@ -20,6 +21,9 @@ class CommonException extends \Exception{
 
         //200300 File error.
         '200301'    =>  '文件上传失败',
+
+        //系统错误
+        '200401'    =>  '邀请码生成失败，请再试一次',
 
     );
 
