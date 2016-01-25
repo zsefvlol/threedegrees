@@ -4,7 +4,7 @@
   "description": "Repository for WeChat account thethreedegrees.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --devtool eval --progress --hot --colors --content-base example",
+    "start": "webpack-dev-server --host 0.0.0.0 --devtool eval --progress --hot --colors --content-base src",
     "clean": "rimraf ./lib ./coverage",
     "build": "npm run clean & babel ./src --out-dir ./lib",
     "lint": "eslint 'src/**/*.@(js|jsx)'",

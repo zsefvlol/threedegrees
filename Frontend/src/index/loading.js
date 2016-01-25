@@ -10,7 +10,7 @@ export default class Loading extends React.Component{
         console.log('loading unmount');
     }
 
-    render(props){
+    render() {
         return (
             <div>
                 <div className="vh50 bg-red" id="upBox"></div>

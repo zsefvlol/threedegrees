@@ -8,9 +8,12 @@ var srcPath = path.join(__dirname, 'src');
 
 module.exports = {
     entry: fs.readdirSync(srcPath).reduce(function (entries, dir) {
-    if (fs.statSync(path.join(srcPath, dir)).isDirectory())
-      entries[dir] = path.join(srcPath, dir, 'app.js')
-
+    if (dir !== 'lib' && fs.statSync(path.join(srcPath, dir)).isDirectory())
+        entries[dir] = [
+            'webpack/hot/dev-server',
+            'webpack-dev-server/client?http://localhost:8080',
+            path.join(srcPath, dir, 'app.js')
+    ]
     return entries
     }, {}),
     output: {

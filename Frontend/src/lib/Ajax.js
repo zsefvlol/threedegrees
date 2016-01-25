@@ -2,7 +2,6 @@
 "use strict";
 
 var request = require('superagent');
-var Env = require('./Env');
 var prefix = require('superagent-prefix')(window._BASE_);
 
 var Ajax = {
