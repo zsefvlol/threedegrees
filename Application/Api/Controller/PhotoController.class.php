@@ -14,6 +14,15 @@ class PhotoController extends RestCommonController {
         $this->do_upload();
     }
 
+    public function remove_get(){
+        if(!$this->uid)
+            $this->responseError(new CommonException('200102'));
+        $userInfo = Privilege::isValidUser($this->uid);
+        if(!$userInfo) $this->responseError(new CommonException('200101'));
+        D('Photo')->where(array('pid'=>I('get.pid',-1,'intval'),'uid'=>$this->uid))->save(array('status'=>0));
+        $this->responseSuccess(array('result'=>1));
+    }
+
     private function do_upload(){
         // Make sure file is not cached (as it happens for example on iOS devices)
         header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
@@ -117,7 +126,8 @@ class PhotoController extends RestCommonController {
         // Return Success JSON-RPC response
         D('Photo')->add(array(
             'uid'   =>  $this->uid,
-            'file_path' =>  str_replace(DOCUMENT_ROOT, '', $uploadPath)
+            'file_path' =>  str_replace(DOCUMENT_ROOT, '', $uploadPath),
+            'status'    =>  1,
         ));
         die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
     }
