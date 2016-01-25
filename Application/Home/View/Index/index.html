@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="Pragma" content="no-cache">
-	<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="renderer" content="webkit">
-	<link rel="shortcut icon" href="/favicon.ico" />
-	<title>{$Think.Const.SITE_TITLE}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <title>{$Think.Const.SITE_TITLE}</title>
+    <script>
+        window._BASE_ = '{$Think.Const.BASE_URL}';
+    </script>
+    <style>
+        html, body {margin: 0; padding: 0;}
+        .vh50{height:50vh;}
+        .vh100{height:100vh;}
+        .bg-red{background-color: #f54;}
+    </style>
 </head>
 <body>
-<div>
-	<h1>开发中...</h1>
-</div>
+    <div id="container">
+        <div class="vh100 bg-red"></div>
+    </div>
+    <script src="{$Think.Const.STATIC_URL}/js/shared.js"></script>
+    <script src="{$Think.Const.STATIC_URL}/js/index.js"></script>
 </body>
 </html>

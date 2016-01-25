@@ -25,9 +25,11 @@
   },
   "homepage": "https://github.com/zsefvlol/threedegrees#readme",
   "dependencies": {
-    "loading-svg": "^1.0.0",
+    "react-ajax": "^0.1.1",
     "react-weui": "^0.2.0",
     "react-weui-form": "^0.1.2",
+    "superagent": "^1.7.1",
+    "superagent-prefix": "0.0.2",
     "weui": "^0.2.3"
   },
   "devDependencies": {

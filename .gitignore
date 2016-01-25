@@ -2,3 +2,5 @@
 /.idea
 /Application/Runtime
 /Frontend/node_modules
+*.tags
+*.tags_sorted_by_file
