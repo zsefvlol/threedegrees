@@ -13,6 +13,10 @@ class IndexController extends Controller {
         $this->display();
     }
 
+    public function term(){
+        $this->display();
+    }
+
     public function index(){
         if(!$this->_is_wechat() || !cookie('wechat_id')){
             $this->redirect('index/error');
