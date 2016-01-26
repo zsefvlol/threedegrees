@@ -12,9 +12,11 @@ export default class Loading extends React.Component{
 
     render() {
         return (
-            <div>
-                <div className="vh50 bg-red" id="upBox"></div>
-                <div className="vh50 bg-red" id="downBox"></div>
+            <div className="table center vh100 bg-red">
+                <div className="table-cell py4">
+                    <h1 className="white h1 mb2">ThreeDegrees</h1>
+                    <img src={`${window._BASE_}/static/loading-bars.svg`} width="64" height="64" />
+                </div>
             </div>
         )
     }

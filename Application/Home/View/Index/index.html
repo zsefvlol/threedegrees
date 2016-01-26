@@ -10,17 +10,31 @@
     <title>{$Think.Const.SITE_TITLE}</title>
     <script>
         window._BASE_ = '{$Think.Const.BASE_URL}';
+        window.timer  = {startAt: +new Date()};
     </script>
     <style>
-        html, body {margin: 0; padding: 0;}
-        .vh50{height:50vh;}
+        * {margin: 0; padding: 0;}
+        body {line-height: 1.6;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;}
+        h1,.h1,.f1{font-size:2rem;line-height:3rem;}
         .vh100{height:100vh;}
+        .mt2{margin-top:2rem;}
+        .mb2{margin-bottom:2rem;}
         .bg-red{background-color: #f54;}
+        .table-cell{display:table-cell;vertical-align:middle;}
+        .py4{padding-top:4rem;padding-bottom:4rem;}
+        .table {display: table;width: 100%;}
+        .white {color: #fff;}
+        .center {text-align: center;}
     </style>
 </head>
 <body>
     <div id="container">
-        <div class="vh100 bg-red"></div>
+        <div class="table center vh100 bg-red">
+            <div class="table-cell py4">
+                <h1 class="white h1 mb2">ThreeDegrees</h1>
+                <img src="{$Think.Const.BASE_URL}/static/loading-bars.svg" width="64" height="64" />
+            </div>
+        </div>
     </div>
     <script src="{$Think.Const.STATIC_URL}/js/shared.js"></script>
     <script src="{$Think.Const.STATIC_URL}/js/index.js"></script>
