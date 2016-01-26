@@ -6,7 +6,6 @@ import { render } from 'react-dom';
 import { Router, Route} from 'react-router';
 import Ajax from '../lib/Ajax';
 import Join from './join';
-import Loading from './loading';
 // import WeUI from 'react-weui';
 // import 'weui';
 
@@ -38,7 +37,7 @@ class App extends React.Component {
 
     render() {
         return (
-            this.state.ready ? <Join user_info={this.state.profile.user_info} /> : <Loading />
+            this.state.ready ? <Join user_info={this.state.profile.user_info} /> : null
         )
     }
 }
