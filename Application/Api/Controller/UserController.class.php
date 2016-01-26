@@ -141,8 +141,12 @@ class UserController extends RestCommonController {
             $filter['gender'] = $fromUser['user_info']['gender'] == '男' ? '女' : '男';
         }
         $list = D('UserInfo')->where($filter)
-            ->field('truename,birthday,current_location,future_location,hobby,self_comment')
-            ->page($page, $limit)->select();
+            ->field('uid,truename,birthday,height,weight,current_location,future_location,hobby,self_comment')
+            ->page($page, $limit)->order('uid desc')->select();
+
+        foreach($list as $k=>$user){
+            $list[$k]['age'] = intval(date('Y')) - intval(substr($user['birthday'],0,4));
+        }
 
         $this->responseSuccess($list);
 
