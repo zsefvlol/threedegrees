@@ -22,15 +22,16 @@ class App extends React.Component {
             var duration = window.timer.loaded - window.timer.startAt;
             console.log(`load cost: ${duration} ms`);
             var func = () => {
+                document.getElementById('loadingPage').remove();
                 this.setState({
                     ready: true,
                     profile: res.body.data
                 });
             }
-            if (duration >= 1000) {
+            if (duration >= 2000) {
                 func();
             } else {
-                setTimeout(func, 1000 - duration);
+                setTimeout(func, 2000 - duration);
             }
         })
     }
