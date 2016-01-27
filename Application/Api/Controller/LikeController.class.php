@@ -14,7 +14,9 @@ class LikeController extends RestCommonController {
         if(!$uid || $uid == $this->uid) $this->responseError(new CommonException('200201'));
 
         $user_infos = Privilege::canIntereact($this->uid, $uid);
-        if(!$user_infos) $this->responseError(new CommonException('200101'));
+        //除了权限还要判断是否是介绍人，介绍人身份无法给其他人点赞
+        if(!$user_infos || $user_infos[0]['user_info']['is_single'] != 1)
+            $this->responseError(new CommonException('200101'));
 
         $exist = D('Like')->where(array(
             'from_uid'  =>  $this->uid,
@@ -50,7 +52,10 @@ class LikeController extends RestCommonController {
         if(!$uid || $uid == $this->uid) $this->responseError(new CommonException('200201'));
 
         $user_infos = Privilege::canIntereact($this->uid, $uid);
-        if(!$user_infos) $this->responseError(new CommonException('200101'));
+
+        //除了权限还要判断是否是介绍人，介绍人身份无法给其他人点赞
+        if(!$user_infos || $user_infos[0]['user_info']['is_single'] != 1)
+            $this->responseError(new CommonException('200101'));
 
         D('Like')->where(array(
             'from_uid'  =>  $this->uid,
