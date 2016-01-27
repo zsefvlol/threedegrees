@@ -4,6 +4,7 @@ namespace Api\Controller;
 use Api\Exception\CommonException;
 use Common\Util\Degree;
 use Common\Util\Privilege;
+use Common\Util\IP;
 
 class UserController extends RestCommonController {
 
@@ -41,6 +42,13 @@ class UserController extends RestCommonController {
         $result['i_like'] = $i_like;
 
         $result['photo'] = D('Photo')->where(array('uid'=>$this->uid,'status'=>1));
+
+        if ($result['user_info']['is_single'] == -1) {
+            $ip = IP::getClinetIP();
+            $ip = '220.181.38.116';
+            $loc = IP::find($ip);
+            $result['user_info']['loc'] = is_array($loc) ? $loc : array();
+        }
 
         $this->responseSuccess($result);
     }
