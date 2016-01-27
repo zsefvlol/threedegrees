@@ -18,11 +18,10 @@ class IndexController extends Controller {
     }
 
     public function index(){
-        cookie('wechat_id', 'o0-6is-a4s2ASj6xz25z7BPdxONY');
-        // if(!$this->_is_wechat() || !cookie('wechat_id')){
-        //     $this->redirect('index/error');
-        //     exit();
-        // }
+        if(!$this->_is_wechat() || !cookie('wechat_id')){
+            $this->redirect('index/error');
+            exit();
+        }
         $this->display();
     }
 
