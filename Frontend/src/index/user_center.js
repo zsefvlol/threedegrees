@@ -15,7 +15,12 @@ export default class UserCenter extends React.Component {
     };
 
     render() {
-        console.log(this.state.user_info);
+        let like_node = this.state.user_info.user_info.is_single==1?(
+            <section>
+                <UserList list_title="我喜欢的" empty_notice="" user_list={this.state.user_info.i_like} />
+                <UserList list_title="喜欢我的" empty_notice="" user_list={this.state.user_info.like_me} />
+            </section>
+        ):'';
         return (<section>
             <Cell className="list_item">
                 <CellBody>
@@ -26,8 +31,7 @@ export default class UserCenter extends React.Component {
                     </ButtonArea>
                 </CellBody>
             </Cell>
-            <UserList list_title="我喜欢的" empty_notice="" user_list={this.state.user_info.i_like} />
-            <UserList list_title="喜欢我的" empty_notice="" user_list={this.state.user_info.like_me} />
+            {like_node}
             <InviteList user_info={this.state.user_info} />
         </section>);
     }
