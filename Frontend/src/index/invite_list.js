@@ -20,26 +20,20 @@ export default class InviteList extends React.Component {
             button_enable: false
         });
         Ajax.get('/api/user/generate_code').end((err, res) => {
-            window.timer.loaded = +new Date();
-            var duration = window.timer.loaded - window.timer.startAt;
-            var func = () => {
-                var invite_list = this.state.invite_list;
-                var allow_invite_count = this.state.allow_invite_count;
-                if(res.body.error_code == 0){
-                    invite_list.push({
-                        'code': res.body.data.code,
-                        'truename': '',
-                        'invite_id': parseInt(1000+Math.random() * 1000)
-                    })
-                }
-                this.setState({
-                    invite_list: invite_list,
-                    allow_invite_count: allow_invite_count,
-                    button_enable: true
-                });
-            };
-            if (duration >= 1000) {func();}
-            else {setTimeout(func, 1000 - duration);}
+            var invite_list = this.state.invite_list;
+            var allow_invite_count = this.state.allow_invite_count;
+            if(res.body.error_code == 0){
+                invite_list.push({
+                    'code': res.body.data.code,
+                    'truename': '',
+                    'invite_id': parseInt(1000+Math.random() * 1000)
+                })
+            }
+            this.setState({
+                invite_list: invite_list,
+                allow_invite_count: allow_invite_count,
+                button_enable: true
+            });
         })
     }
 
