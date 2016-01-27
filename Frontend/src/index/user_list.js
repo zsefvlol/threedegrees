@@ -10,6 +10,8 @@ const {Cells, CellsTitle, CellBody, Cell, Button, CellFooter} = WeUI;
 export default class UserList extends React.Component {
 
     state = {
+        list_title: this.props.list_title,
+        empty_notice: this.props.empty_notice,
         user_list: this.props.user_list
     };
 
@@ -22,20 +24,15 @@ export default class UserList extends React.Component {
             <Cell className="list_item">
                 <CellBody>
                     <h2 className="title">当前列表为空</h2>
-                    <p className="desc">如果您是介绍人身份，您只能看到您邀请的好友的信息</p>
+                    <p className="desc">{this.state.empty_notice}</p>
                 </CellBody>
             </Cell>
         );
         return (<section>
             <Cell className="list_item">
                 <CellBody>
-                    <h2 className="title">ThreeDegree Lists</h2>
+                    <h2 className="title">{this.state.list_title}</h2>
                 </CellBody>
-                <CellFooter>
-                    <Button type="default" size="small" plain="true">
-                        个人中心
-                    </Button>
-                </CellFooter>
             </Cell>
             <Cells access>
                 {lists}

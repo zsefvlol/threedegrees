@@ -32,10 +32,10 @@ class UserController extends RestCommonController {
 
         $like_me = D('Like')->where(array('to_uid'=>$this->uid, 'like_status'=>1))
             ->join('left join tb_user_info on tb_like.from_uid = tb_user_info.uid')
-            ->field('truename,relation,uid')->select();
+            ->field('uid,truename,birthday,height,weight,current_location')->select();
         $i_like = D('Like')->where(array('from_uid'=>$this->uid, 'like_status'=>1))
             ->join('left join tb_user_info on tb_like.to_uid = tb_user_info.uid')
-            ->field('truename,relation,uid')->select();
+            ->field('uid,truename,birthday,height,weight,current_location')->select();
 
         $result['like_me'] = $like_me;
         $result['i_like'] = $i_like;
