@@ -31,12 +31,10 @@ export default class UserList extends React.Component {
         return (<section>
             <Cell className="list_item">
                 <CellBody>
-                    <h2 className="title">{this.state.list_title}</h2>
+                    <h2 className="title"><b>{this.state.list_title}</b></h2>
                 </CellBody>
             </Cell>
-            <Cells access>
-                {lists}
-            </Cells>
+            {lists}
         </section>);
     }
 
