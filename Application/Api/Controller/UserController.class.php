@@ -122,7 +122,7 @@ class UserController extends RestCommonController {
         if($myUser['verified'] != 1)
             $this->responseError(new CommonException('200101'));
 
-        $allow_fields = array("is_single","wechat_id","truename","relation","gender","birthday","constellation","height","weight","current_location","future_location","month_income","homeland","people","animal","parent","siblings","smoking","drinking","year_before_marriage","child_count","hobby","self_comment","r_age","r_height","r_education","r_location","r_income","r_comment");
+        $allow_fields = array("is_single","wechat_id","truename","relation","gender","birthday","constellation","height","weight","current_location","future_location","month_income","homeland","people","animal","parent","siblings","smoking","drinking","year_before_marriage","child_count","hobby","self_comment","r_age","r_height","r_long_distance","r_education","r_location","r_income","r_comment");
         $field_to_save = array('uid'=>$this->uid);
         foreach($request as $field=>$value){
             if(in_array($field, $allow_fields)) $field_to_save[$field] = $value;
