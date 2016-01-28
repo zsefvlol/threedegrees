@@ -78,3 +78,18 @@ h1, .h1, .f1 {
 .weui_cell .weui_label {
     width: 6em;
 }
+.hd {
+    padding: 2em 0;
+}
+.hd .title {
+    text-align: center;
+    font-size: 34px;
+    color: #3cc51f;
+    font-weight: 400;
+    margin: 0 15%;
+}
+.hd .sub_title {
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}

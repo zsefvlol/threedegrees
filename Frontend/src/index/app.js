@@ -38,7 +38,7 @@ class App extends React.Component {
 
     render() {
         return (
-            this.state.ready ? <Join user_info={this.state.profile.user_info} /> : null
+            this.state.ready ? <Join profile={this.state.profile} /> : null
         )
     }
 }

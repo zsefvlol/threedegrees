@@ -2,4 +2,5 @@
 .mt2{margin-top:2rem}.mb2{margin-bottom:2rem}.bg-red{background-color:#f54}.table-cell{display:table-cell;vertical-align:middle}.py4{padding-top:4rem;padding-bottom:4rem}
 .table{display:table;width:100%}.white{color:#fff}.center{text-align:center}.list_item .cover{display:block;width:60px;height:60px;margin-right:15px}.list_item .title{font-weight:normal;font-size:16px}
 .list_item .desc{color:#888;font-size:14px;display:-webkit-box;max-width:100%;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis}
-.vw40{width:40vw}.fl{float:left}.fr{float:right}.clearfix{overflow:hidden}.weui_cell .weui_select{padding-left:64px}.weui_cell .weui_label{width:6em}
+.vw40{width:40vw}.fl{float:left}.fr{float:right}.clearfix{overflow:hidden}.weui_cell .weui_select{padding-left:64px}.weui_cell .weui_label{width:6em}.hd{padding:2em 0}
+.hd .title{text-align:center;font-size:34px;color:#3cc51f;font-weight:400;margin:0 15%}.hd .sub_title{text-align:center;color:#888;font-size:14px}
