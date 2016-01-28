@@ -12,51 +12,37 @@
         window._BASE_ = '{$Think.Const.BASE_URL}';
         window.timer  = {startAt: +new Date()};
     </script>
-    <style>
-        * {margin: 0; padding: 0;}
-        body {line-height: 1.6;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;}
-        h1,.h1,.f1{font-size:2rem;line-height:3rem;}
-        .vh100{height:100vh;}
-        .mt2{margin-top:2rem;}
-        .mb2{margin-bottom:2rem;}
-        .bg-red{background-color: #f54;}
-        .table-cell{display:table-cell;vertical-align:middle;}
-        .py4{padding-top:4rem;padding-bottom:4rem;}
-        .table {display: table;width: 100%;}
-        .white {color: #fff;}
-        .center {text-align: center;}
-        .list_item .cover{
-            display: block;
-            width: 60px;
-            height: 60px;
-            margin-right: 15px;
-        }
-        .list_item .title{
-            font-weight: normal;
-            font-size: 16px;
-        }
-        .list_item .desc{
-            color: #888888;
-            font-size: 14px;
-            display: -webkit-box;
-            max-width: 100%;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{$Think.Const.BASE_URL}/static/css/main.min.css">
 </head>
 <body>
-    <div id="container">
-        <div class="table center vh100 bg-red">
-            <div class="table-cell py4">
-                <h1 class="white h1 mb2">ThreeDegrees</h1>
-                <img src="{$Think.Const.BASE_URL}/static/loading-bars.svg" width="64" height="64" />
-            </div>
+    <div id="loadingPage" class="table center vh100 bg-red">
+        <div class="table-cell py4">
+            <h1 class="white h1 mb2">ThreeDegrees</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="64" height="64" fill="white"> <path transform="translate(2)" d="M0 12 V20 H4 V12z"> <animate attributeName="d" values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z" dur="1.2s" repeatCount="indefinite" begin="0" keytimes="0;.2;.5;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8" calcMode="spline"  /> </path> <path transform="translate(8)" d="M0 12 V20 H4 V12z"> <animate attributeName="d" values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z" dur="1.2s" repeatCount="indefinite" begin="0.2" keytimes="0;.2;.5;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8" calcMode="spline"  /> </path> <path transform="translate(14)" d="M0 12 V20 H4 V12z"> <animate attributeName="d" values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z" dur="1.2s" repeatCount="indefinite" begin="0.4" keytimes="0;.2;.5;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8" calcMode="spline" /> </path> <path transform="translate(20)" d="M0 12 V20 H4 V12z"> <animate attributeName="d" values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z" dur="1.2s" repeatCount="indefinite" begin="0.6" keytimes="0;.2;.5;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8" calcMode="spline" /> </path> <path transform="translate(26)" d="M0 12 V20 H4 V12z"> <animate attributeName="d" values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z" dur="1.2s" repeatCount="indefinite" begin="0.8" keytimes="0;.2;.5;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8" calcMode="spline" /> </path> </svg>
+
         </div>
     </div>
-    <script src="{$Think.Const.STATIC_URL}/js/shared.js"></script>
-    <script src="{$Think.Const.STATIC_URL}/js/index.js"></script>
+    <div id="container"></div>
+    <script id="async">
+        document.addEventListener('DOMContentLoaded', function() {
+            var i = 0;
+            var jsMap = [
+                '{$Think.Const.STATIC_URL}/js/shared.js',
+                '{$Think.Const.STATIC_URL}/js/index.js'
+            ];
+            function loadJs() {
+                var js = jsMap[i];
+                if (js) {
+                    var dom = document.createElement('script');
+                    dom.src = js;
+                    dom.onload = loadJs;
+                    i++;
+                    document.body.appendChild(dom);
+                }
+            }
+            loadJs(i);
+            document.getElementById('async').remove();
+        })
+    </script>
 </body>
 </html>
