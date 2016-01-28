@@ -23,18 +23,25 @@
         </div>
     </div>
     <div id="container"></div>
-
-    <script type="text/javascript">
+    <script id="async">
         document.addEventListener('DOMContentLoaded', function() {
+            var i = 0;
             var jsMap = [
                 '{$Think.Const.STATIC_URL}/js/shared.js',
                 '{$Think.Const.STATIC_URL}/js/index.js'
-            ]
-            jsMap.forEach(function(js) {
-                var dom = document.createElement('script');
-                dom.src = js;
-                document.body.appendChild(dom);
-            })
+            ];
+            function loadJs() {
+                var js = jsMap[i];
+                if (js) {
+                    var dom = document.createElement('script');
+                    dom.src = js;
+                    dom.onload = loadJs;
+                    i++;
+                    document.body.appendChild(dom);
+                }
+            }
+            loadJs(i);
+            document.getElementById('async').remove();
         })
     </script>
 </body>
