@@ -13,8 +13,9 @@ export default class UserListItem extends React.Component {
     };
 
     handleClick(e){
-        //@TODO 跳转到详情页
-        //location.href = window._BASE_ + '/?uid=' + this.state.user.uid;
+        // TODO
+        // may be have a better way...
+        window.location.hash = '#/user/'+this.props.user.uid;
     }
 
     render() {
