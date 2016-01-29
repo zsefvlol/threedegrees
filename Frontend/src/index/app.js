@@ -3,14 +3,12 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, Link, browserHistory } from 'react-router'
+import { Router, Route } from 'react-router'
 import Ajax from '../lib/Ajax';
 import Join from './join';
 import UserCenter from './user_center';
 import UserList from './user_list';
 import UserInfo from './user_info';
-// import WeUI from 'react-weui';
-// import 'weui';
 
 class App extends React.Component {
 
@@ -38,9 +36,5 @@ Ajax.get('/api/user/profile').end((err, res) => {
     window.pageData.profile = res.body.data;
     var duration = window.timer.loaded - window.timer.startAt;
     console.log(`load cost: ${duration} ms`);
-    if (duration >= 2000) {
-        entry();
-    } else {
-        setTimeout(entry, 2000 - duration);
-    }
+    duration >= 2000 ? entry() : setTimeout(entry, 2000 - duration);
 })
