@@ -4,16 +4,24 @@
 import React from 'react';
 import { render } from 'react-dom';
 import WeUI from 'react-weui';
-import UserListItem from './user_list_item'
+import UserListItem from './user_list_item';
+import Ajax from '../lib/Ajax';
 const {Cells, CellsTitle, CellBody, Cell, Button, CellFooter} = WeUI;
 
 export default class UserList extends React.Component {
 
     state = {
-        list_title: this.props.list_title,
-        empty_notice: this.props.empty_notice,
-        user_list: this.props.user_list
+        list_title: this.props.list_title || '异性列表页',
+        empty_notice: this.props.empty_notice || '',
+        user_list: this.props.user_list || this.getUsers()
     };
+
+    getUsers() {
+        Ajax.get('/api/user/list').end((err, res) => {
+            this.setState({user_list: res.body.data})
+        })
+        return [];
+    }
 
     render() {
         let lists = this.state.user_list.length ? this.state.user_list.map(function(user){
