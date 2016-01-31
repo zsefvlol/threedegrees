@@ -3,9 +3,11 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import WeForm from 'react-weui-form';
-import { dogeSchema } from '../lib/Const';
+import MyForm from '../lib/MyForm';
+import MyUploder from '../lib/MyUploader';
+import { schemas } from '../lib/Const';
 import Ajax from '../lib/Ajax';
+
 
 import UserCenter from './user_center';
 
@@ -41,7 +43,7 @@ export default class Doge extends React.Component {
     }
 
     getSchema() {
-        let schema = dogeSchema[this.state.step];
+        let schema = schemas[this.state.step];
         schema.forEach((item) => {
             item.properties.forEach((control) => {
                 let id = control.id;
@@ -67,6 +69,11 @@ export default class Doge extends React.Component {
         }
     };
 
+
+    getAppend() {
+        return this.state.step === 0 ? (<MyUploder photos={window.pageData.profile.photo} />) : null;
+    }
+
     render() {
         console.log(this.state.step);
         return this.state.step < 2 ? (
@@ -75,7 +82,7 @@ export default class Doge extends React.Component {
                     <h1 className="title">{this.state.step ? '择偶要求' : '个人信息'}</h1>
                     <p className="sub_title">请如实填写您的{this.state.step ? '要求' : '信息'}</p>
                 </div>
-                <WeForm schema={this.getSchema()} form={this.getForm()} />
+                <MyForm schema={this.getSchema()} form={this.getForm()} append={this.getAppend()} />
             </div>
         ) : <UserCenter />;
     }

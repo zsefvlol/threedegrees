@@ -96,3 +96,6 @@ h1, .h1, .f1 {
     color: #888;
     font-size: 14px;
 }
+.weui_cell.bdt0:before {
+    border-top: 0;
+}

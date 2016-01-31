@@ -5,7 +5,7 @@ import FormUtils from '../lib/FormUtils';
 
 const constellations = ['双鱼座', '白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '摩羯座', '水瓶座'];
 
-const dogeSchema = [
+const schemas = [
     [{
         label:'基本资料',
         properties:[{
@@ -290,4 +290,4 @@ const dogeSchema = [
 ]
 
 exports.constellations = constellations;
-exports.dogeSchema = dogeSchema;
+exports.schemas = schemas;

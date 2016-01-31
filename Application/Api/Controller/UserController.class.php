@@ -47,11 +47,10 @@ class UserController extends RestCommonController {
         $result['like_me'] = $like_me;
         $result['i_like'] = $i_like;
 
-        $result['photo'] = D('Photo')->where(array('uid'=>$this->uid,'status'=>1));
+        $result['photo'] = D('Photo')->where(array('uid'=>$this->uid,'status'=>1))->select();
 
         if ($result['user_info']['is_single'] == -1) {
             $ip = IP::getClinetIP();
-            $ip = '220.181.38.116';
             $loc = IP::find($ip);
             $result['user_info']['loc'] = is_array($loc) ? $loc : array();
         }
