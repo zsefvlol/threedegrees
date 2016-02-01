@@ -47,11 +47,10 @@ class UserController extends RestCommonController {
         $result['like_me'] = $like_me;
         $result['i_like'] = $i_like;
 
-        $result['photo'] = D('Photo')->where(array('uid'=>$this->uid,'status'=>1));
+        $result['photo'] = D('Photo')->where(array('uid'=>$this->uid,'status'=>1))->select();
 
         if ($result['user_info']['is_single'] == -1) {
             $ip = IP::getClinetIP();
-            $ip = '220.181.38.116';
             $loc = IP::find($ip);
             $result['user_info']['loc'] = is_array($loc) ? $loc : array();
         }
@@ -104,7 +103,7 @@ class UserController extends RestCommonController {
             $this->responseError(new CommonException('200101'));
         unset($toUserInfo['openid']);
         $toUserInfo['relation_text'] = Degree::getRelationText($this->uid, $uid);
-        $toUserInfo['photo'] = D('Photo')->where(array('uid'=>$uid,'status'=>1));
+        $toUserInfo['photo'] = D('Photo')->where(array('uid'=>$uid,'status'=>1))->select();
         D('ViewLog')->add(array(
             'from_uid'  =>  $this->uid,
             'to_uid'    =>  $uid,

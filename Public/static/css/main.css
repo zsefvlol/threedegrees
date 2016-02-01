@@ -16,6 +16,9 @@ h1, .h1, .f1 {
 .mt2 {
     margin-top: 2rem;
 }
+.pd1 {
+    padding: 1rem;
+}
 .mb2 {
     margin-bottom: 2rem;
 }
@@ -92,4 +95,20 @@ h1, .h1, .f1 {
     text-align: center;
     color: #888;
     font-size: 14px;
+}
+.weui_cell.bdt0:before {
+    border-top: 0;
+}
+.bottomBtns {
+    width: 9rem;
+    margin: 5px auto;
+}
+.barWrapper {
+    padding-bottom: 65px;
+}
+.bottomBar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: white;
 }

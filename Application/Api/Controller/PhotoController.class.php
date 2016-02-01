@@ -62,7 +62,7 @@ class PhotoController extends RestCommonController {
 //        } else {
 //            $fileName = uniqid("file_");
 //        }
-        $fileName = uniqid("pic_");
+        $fileName = uniqid("pic_").'.jpg';;
         $md5File = @file($uploadBaseDir.'md5list2.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         $md5File = $md5File ? $md5File : array();
         if (isset($_REQUEST["md5"]) && array_search($_REQUEST["md5"], $md5File ) !== FALSE ) {
@@ -124,12 +124,14 @@ class PhotoController extends RestCommonController {
         }
 
         // Return Success JSON-RPC response
-        D('Photo')->add(array(
+        $file_path = strtr($uploadPath, array(DOCUMENT_ROOT => '', '\\' => '/'));
+        $photoData = array(
             'uid'   =>  $this->uid,
-            'file_path' =>  str_replace(DOCUMENT_ROOT, '', $uploadPath),
+            'file_path' =>  $file_path,
             'status'    =>  1,
-        ));
-        die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
+        );
+        $pid = D('Photo')->add($photoData);
+        $this->responseSuccess(compact('pid') + $photoData);
     }
 
     private function mymd5( $file ) {
