@@ -32,7 +32,7 @@ export default class Like extends React.Component {
 
     setLikeData = () => {
         if (this.state.liked) {
-            window.pageData.profile.i_like.push(this.props.target);
+            window.pageData.profile.i_like.push(this.props.target.user_info);
             return;
         }
         let i_like = window.pageData.profile.i_like;
