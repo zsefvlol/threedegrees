@@ -12,9 +12,15 @@ import UserInfo from './user_info';
 
 class App extends React.Component {
 
+    componentWillMount() {
+        if (pageData.profile.user_info.is_single == -1) {
+            window.location.hash = '#/join';
+        }
+    }
+
     render() {
         return (
-            pageData.profile.user_info.is_single == -1 ? <Join /> : <UserCenter />
+            <UserCenter />
         );
     }
 }

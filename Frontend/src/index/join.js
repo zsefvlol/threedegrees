@@ -5,6 +5,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import Choose from './choose';
 import Doge from './doge';
+import Matchmaker from './Matchmaker';
 
 export default class Join extends React.Component {
 
@@ -18,10 +19,10 @@ export default class Join extends React.Component {
 
     render() {
         if (this.state.is_single == 1){
-            return (<Doge profile={window.pageData.profile} />);
+            return (<Doge />);
         }
-        // if (this.state.is_single == 0)
-        //     return (<Matchmaker user_info={this.user_info} />);
+        if (this.state.is_single == 0)
+            return (<Matchmaker />);
         return (<Choose handle={this.chooseHandle} />);
     }
 
