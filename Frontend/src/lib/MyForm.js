@@ -12,15 +12,15 @@ export default class MyForm extends WeForm {
 
     render() {
         let append = this.props.append;
-      return (
-        <section>
-            {this.renderForm()}
-            {this.props.append}
-            <ButtonArea>
-                {this.renderActions()}
-            </ButtonArea>
-        </section>
-      )
+        return (
+            <section>
+                {this.renderForm()}
+                {this.props.append}
+                <ButtonArea>
+                    {this.renderActions()}
+                </ButtonArea>
+            </section>
+        )
     }
 
 }

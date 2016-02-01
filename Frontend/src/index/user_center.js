@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, Link, browserHistory } from 'react-router'
+import { Link } from 'react-router'
 import WeUI from 'react-weui';
 import UserList from './user_list'
 import InviteList from './invite_list'

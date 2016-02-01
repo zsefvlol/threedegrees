@@ -103,7 +103,7 @@ class UserController extends RestCommonController {
             $this->responseError(new CommonException('200101'));
         unset($toUserInfo['openid']);
         $toUserInfo['relation_text'] = Degree::getRelationText($this->uid, $uid);
-        $toUserInfo['photo'] = D('Photo')->where(array('uid'=>$uid,'status'=>1));
+        $toUserInfo['photo'] = D('Photo')->where(array('uid'=>$uid,'status'=>1))->select();
         D('ViewLog')->add(array(
             'from_uid'  =>  $this->uid,
             'to_uid'    =>  $uid,
