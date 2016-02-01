@@ -127,7 +127,7 @@ const schemas = [
             options:FormUtils.combine(['经常','一般','很少','从不']).get(),
             rule:'required'
         }, {
-            id:'distance_love',
+            id:'long_distance',
             label:'接受异地恋',
             type:'select',
             options:FormUtils.combine(['否','1年内','2年内','5年内']).prefix(),

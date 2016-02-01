@@ -16,7 +16,6 @@ export default class UserCenter extends React.Component {
     };
 
     render() {
-        console.log(this.state.profile);
         return (<section>
             <Cell className="list_item">
                 <CellBody>

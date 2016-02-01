@@ -27,6 +27,10 @@ export default class Doge extends React.Component {
         }
         // 多选数据格式化
         for (var k in data) {
+            if (data[k] === false) {
+                delete data[k];
+                continue;
+            }
             var matches = k.match(/(\w+)\[(\S+)\]/);
             if (matches) {
                 let field = matches[1];
@@ -45,11 +49,22 @@ export default class Doge extends React.Component {
         let schema = schemas[this.state.step];
         schema.forEach((item) => {
             item.properties.forEach((control) => {
-                let id = control.id;
-                control.default = window.pageData.profile.user_info[id] || control.default || 'demo';
-                if (id === 'current_location' && !control.default) {
-                    let loc_str = window.pageData.profile.user_info.loc.join(' ');
-                    control.default = loc_str;
+                if (item.checkbox) {
+                    let id = control.id.replace(/\[\S+\]/, '');
+                    let info = window.pageData.profile.user_info[id]
+                    if (info && info.indexOf(control.value) >= 0) {
+                        control.default = true;
+                    } else {
+                        control.default = undefined;
+                    }
+                } else {
+                    let id = control.id;
+                    let info = window.pageData.profile.user_info[id];
+                    control.default = info || control.default;
+                    if (id === 'current_location' && window.pageData.profile.user_info.loc && !control.default) {
+                        let loc_str = window.pageData.profile.user_info.loc.join(' ');
+                        control.default = loc_str;
+                    }
                 }
             })
         })
