@@ -8,11 +8,12 @@ var Ajax = {
     errorHandler: (req) => {
         req.on('response', (res) => {
             if (!res.ok || !res.body) {
-                alert('请求失败，请稍后重试');
+                window.location = window._BASE_+'/index/error.html';
                 throw res;
             }
             if (res.body.error_code) {
                 alert(res.body.error_message);
+                window.location = window._BASE_+'/index/error.html';
                 throw res.text;
             }
         });
