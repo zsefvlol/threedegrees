@@ -48,6 +48,7 @@ class UserController extends RestCommonController {
         $result['i_like'] = $i_like;
 
         $result['photo'] = D('Photo')->where(array('uid'=>$this->uid,'status'=>1))->select();
+        $result['photo'] = $result['photo'] ? $result['photo'] : array();
 
         if ($result['user_info']['is_single'] == -1) {
             $ip = IP::getClinetIP();
@@ -104,6 +105,7 @@ class UserController extends RestCommonController {
         unset($toUserInfo['openid']);
         $toUserInfo['relation_text'] = Degree::getRelationText($this->uid, $uid);
         $toUserInfo['photo'] = D('Photo')->where(array('uid'=>$uid,'status'=>1))->select();
+        $toUserInfo['photo'] = $toUserInfo['photo'] ? $toUserInfo['photo'] : array();
         D('ViewLog')->add(array(
             'from_uid'  =>  $this->uid,
             'to_uid'    =>  $uid,
