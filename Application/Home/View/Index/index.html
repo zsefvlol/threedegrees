@@ -13,7 +13,7 @@
         window.timer  = {startAt: +new Date()};
         var pageData = {};
     </script>
-    <link rel="stylesheet" type="text/css" href="{$Think.Const.BASE_URL}/static/css/main.min.css">
+    <link rel="stylesheet" type="text/css" href="{$Think.Const.BASE_URL}/static/css/main.min.css?v=2">
 </head>
 <body>
     <div id="loadingPage" class="table center vh100 bg-red">
@@ -28,8 +28,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             var i = 0;
             var jsMap = [
-                '{$Think.Const.STATIC_URL}/js/shared.js?v=1',
-                '{$Think.Const.STATIC_URL}/js/index.js?v=1'
+                '{$Think.Const.STATIC_URL}/js/shared.js?v=2',
+                '{$Think.Const.STATIC_URL}/js/index.js?v=2'
             ];
             function loadJs() {
                 var js = jsMap[i];

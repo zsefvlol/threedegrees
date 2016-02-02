@@ -4,6 +4,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import WeUI from 'react-weui';
+import { Link } from 'react-router'
 import UserListItem from './user_list_item';
 import Ajax from '../lib/Ajax';
 const {Cells, CellsTitle, CellBody, Cell, Button, CellFooter} = WeUI;
@@ -11,9 +12,10 @@ const {Cells, CellsTitle, CellBody, Cell, Button, CellFooter} = WeUI;
 export default class UserList extends React.Component {
 
     state = {
-        list_title: this.props.list_title || '异性列表页',
+        list_title: this.props.list_title || '三度列表',
         empty_notice: this.props.empty_notice || '',
-        user_list: this.props.user_list || this.getUsers()
+        user_list: this.props.user_list || this.getUsers(),
+        disable_return: this.props.disable_return
     };
 
     getUsers() {
@@ -36,6 +38,16 @@ export default class UserList extends React.Component {
                 </CellBody>
             </Cell>
         );
+        console.log(this.state.disable_return);
+        let return_btn = !this.state.disable_return ? (
+            <Cell className="list_item">
+                <CellBody>
+                    <Link to="/">
+                        <Button type="default">个人中心</Button>
+                    </Link>
+                </CellBody>
+            </Cell>
+        ) : '';
         return (<section>
             <Cell className="list_item">
                 <CellBody>
@@ -43,6 +55,7 @@ export default class UserList extends React.Component {
                 </CellBody>
             </Cell>
             {lists}
+            {return_btn}
         </section>);
     }
 
