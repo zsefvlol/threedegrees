@@ -32,7 +32,7 @@ const schemas = [
             }]
         }, {
             id:'relation',
-            label:'关系',
+            label:'介绍关系',
             type:'text',
             placeholder:'请填写和介绍人的关系',
             rule:'required|between:2,15|string'

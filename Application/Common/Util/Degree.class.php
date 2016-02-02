@@ -44,13 +44,30 @@ class Degree{
         $user_info = array();
         foreach ($user_info_result as $user)
             $user_info[$user['uid']] = $user;
-        $text = '温梦恬';
-        foreach($from_relation_list as $uid) $text = $user_info[$uid]['truename'] . '-'
-            . $user_info[$uid]['relation'] . '->' . $text;
-        foreach($to_relation_list as $uid) $text = $text . '<-' . $user_info[$uid]['relation'] . '-'
-            . $user_info[$uid]['truename'];
 
-        return $text;
+        $result = array();
+        foreach($from_relation_list as $uid) $result[] = $user_info[$uid]['truename'] . '('
+            . $user_info[$uid]['relation'] . ')';
+        $result[] = '小温';
+        foreach($to_relation_list as $uid) $result[] = $user_info[$uid]['truename'] . '('
+            . $user_info[$uid]['relation'] . ')';
+        return $result;
+
+//        $result = array();
+//        foreach($from_relation_list as $uid) $result[0][] = $user_info[$uid]['truename'] . '('
+//            . $user_info[$uid]['relation'] . ')';
+//        foreach($to_relation_list as $uid) $result[1][] = $user_info[$uid]['truename'] . '('
+//            . $user_info[$uid]['relation'] . ')';
+//
+//        return $result;
+
+//        $text = '小温';
+//        foreach($from_relation_list as $uid) $text = $user_info[$uid]['truename'] . '('
+//            . $user_info[$uid]['relation'] . ')=>' . $text;
+//        foreach($to_relation_list as $uid) $text = $text . '<=(' . $user_info[$uid]['relation'] . ')'
+//            . $user_info[$uid]['truename'];
+
+//        return $text;
     }
 
 }

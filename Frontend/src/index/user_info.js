@@ -72,16 +72,45 @@ export default class UserList extends React.Component {
                 w: 1200,
                 h: 900
             });
-        })
+        });
+
         let getThumbnailContent = (item) => {
             return (
                 <img src={item.thumbnail} width={120} height={90}/>
             );
-        }
+        };
+
+        //let relation_text = this.state.profile.relation_text;
+        //let relation = [(<Cell><CellBody>小温</CellBody></Cell>)];
+        //for(let i=0;i<Math.max(relation_text[0].length,relation_text[1].length);i++){
+        //    relation.push((
+        //        <Cell>
+        //            <CellBody>{relation_text[0][i]}</CellBody>
+        //            <CellBody>{relation_text[1][i]}</CellBody>
+        //        </Cell>
+        //    ))
+        //}
+        let svg_down_arrow = (
+            <svg width="12" height="12" viewBox="0 0 256 256">
+                <path fill="#C33" d="M219.314 155.314l-80 80c-6.248 6.249-16.379 6.249-22.627 0l-80-80c-6.248-6.249-6.248-16.379 0-22.627s16.379-6.249 22.627 0l52.686 52.686v-153.373c0-8.837 7.163-16 16-16s16 7.163 16 16v153.373l52.686-52.686c3.124-3.124 7.219-4.686 11.314-4.686s8.19 1.562 11.314 4.686c6.249 6.249 6.249 16.379 0 22.627z" />
+            </svg>
+        );
+        let relation = this.state.profile.relation_text.map(function(r,i){
+            return i<this.state.profile.relation_text.length-1? (<section key={i}>
+               <Cell className="relation_list"><CellBody>{r}</CellBody></Cell>
+               <Cell className="relation_list"><CellBody>{svg_down_arrow}</CellBody></Cell>
+           </section>) : (<section key={i}>
+                <Cell className="relation_list"><CellBody>{r}</CellBody></Cell>
+            </section>)
+        }.bind(this));
 
         return (
             <div className="barWrapper">
                 <div>
+                    <CellsTitle>三度关系</CellsTitle>
+                    <Cells className="center">
+                        {relation}
+                    </Cells>
                     <CellsTitle>个人信息</CellsTitle>
                     <Cells>
                         {result.info.map((cell) => {

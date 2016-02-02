@@ -113,3 +113,11 @@ h1, .h1, .f1 {
     bottom: 0;
     background: white;
 }
+.relation_list{
+    font-size: 14px;
+    border: none;
+    padding: 2px 2px;
+}
+.relation_list:before{
+    border: none;
+}
