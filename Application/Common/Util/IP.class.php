@@ -25,9 +25,7 @@ class IP
 
     public static function getClinetIP()
     {
-        if (isset($_SERVER['REMOTE_ADDR']))
-            return $_SERVER['REMOTE_ADDR'];
-        return false;
+        return get_client_ip(0, true);
     }
 
     public static function find($ip)
