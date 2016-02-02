@@ -92,7 +92,7 @@ export default class Doge extends React.Component {
         return (
             <div>
                 <div className="hd">
-                    <h1 className="title">{this.state.step ? '择偶要求' : '个人信息'}</h1>
+                    <h1 className="title">{this.state.step ? '择偶要求(可多选)' : '个人信息'}</h1>
                     <p className="sub_title">请如实填写您的{this.state.step ? '要求' : '信息'}</p>
                 </div>
                 <MyForm schema={this.getSchema()} form={this.getForm()} append={this.getAppend()} />

@@ -148,6 +148,7 @@ const schemas = [
             id:'hobby',
             label:'兴趣爱好',
             type:'text',
+            placeholder: '请用分号隔开',
             rule:'required'
         }]
     }, {
@@ -226,15 +227,15 @@ const schemas = [
             type:'checkbox',
             value:'不限'
         }, {
-            id:'r_education[本科]',
-            label:'本科',
+            id:'r_education[本科以上]',
+            label:'本科以上',
             type:'checkbox',
-            value:'本科'
+            value:'本科以上'
         }, {
-            id:'r_education[研究生]',
-            label:'研究生',
+            id:'r_education[研究生以上]',
+            label:'研究生以上',
             type:'checkbox',
-            value:'研究生'
+            value:'研究生以上'
         }, {
             id:'r_education[博士及以上]',
             label:'博士及以上',
