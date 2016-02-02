@@ -23,7 +23,7 @@ class UserController extends RestCommonController {
             if($invite['to_uid']) $result['used_code_count']++;
             $result['generated_code_count']++;
         }
-        $result['invite_list'] = $invite_list;
+        $result['invite_list'] = $invite_list ? $invite_list : array();
 
         $result['user_info'] = D('UserInfo')->where(array('uid'=>$this->uid))->find();
         if(!$result['user_info']){
