@@ -12,10 +12,10 @@ const {Cells, CellsTitle, CellBody, Cell, Button, CellFooter} = WeUI;
 export default class UserList extends React.Component {
 
     state = {
-        list_title: this.props.list_title || '异性列表页',
+        list_title: this.props.list_title || '三度列表',
         empty_notice: this.props.empty_notice || '',
         user_list: this.props.user_list || this.getUsers(),
-        return_to_user_center_btn: this.props.return_to_user_center_btn || true
+        disable_return: this.props.disable_return
     };
 
     getUsers() {
@@ -38,7 +38,8 @@ export default class UserList extends React.Component {
                 </CellBody>
             </Cell>
         );
-        let return_btn = this.state.return_to_user_center_btn ? (
+        console.log(this.state.disable_return);
+        let return_btn = !this.state.disable_return ? (
             <Cell className="list_item">
                 <CellBody>
                     <Link to="/">
@@ -54,6 +55,7 @@ export default class UserList extends React.Component {
                 </CellBody>
             </Cell>
             {lists}
+            {return_btn}
         </section>);
     }
 
