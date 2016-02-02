@@ -5,6 +5,8 @@ import FormUtils from '../lib/FormUtils';
 
 const constellations = ['双鱼座', '白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '摩羯座', '水瓶座'];
 
+const animals = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
+
 const schemas = [
     [{
         label:'基本资料',
@@ -32,7 +34,7 @@ const schemas = [
             id:'relation',
             label:'关系',
             type:'text',
-            placeholder:'请填写和邀请人的关系',
+            placeholder:'请填写和介绍人的关系',
             rule:'required|between:2,15|string'
         }, {
             id:'wechat_id',
@@ -57,12 +59,14 @@ const schemas = [
         }, {
             id:'height',
             label:'身高',
+            default: -1,
             type:'select',
             rule:'required',
             options:FormUtils.range(150, 190, 5, 'cm').prefix({label: '以后告诉你', value: '-1'})
         }, {
             id:'weight',
             label:'体重',
+            default: -1,
             type:'select',
             rule:'required',
             options:FormUtils.range(40, 100, 10, 'kg').prefix({label: '以后告诉你', value: '-1'})
@@ -85,6 +89,7 @@ const schemas = [
             id:'month_income',
             label:'收入',
             type:'select',
+            default: -1,
             options:FormUtils.combine(['2000以下','2000-5000','5000-10000','10000-20000','20000以上']).prefix({label: '以后告诉你', value: '-1'}),
             rule:'required'
         }, {
@@ -100,8 +105,9 @@ const schemas = [
         }, {
             id:'animal',
             label:'属相',
-            type:'text',
-            rule:'required'
+            type:'select',
+            rule:'required',
+            options:FormUtils.combine(animals).prefix()
         }, {
             id:'parent',
             label:'父母情况',
@@ -118,13 +124,13 @@ const schemas = [
             id:'smoking',
             label:'吸烟',
             type:'select',
-            options:FormUtils.combine(['经常','一般','很少','从不']).get(),
+            options:FormUtils.combine(['从不', '很少', '一般', '经常']).get(),
             rule:'required'
         }, {
             id:'drinking',
             label:'喝酒',
             type:'select',
-            options:FormUtils.combine(['经常','一般','很少','从不']).get(),
+            options:FormUtils.combine(['从不', '很少', '一般', '经常']).get(),
             rule:'required'
         }, {
             id:'long_distance',
@@ -136,13 +142,13 @@ const schemas = [
             id:'year_before_marriage',
             label:'几年内结婚',
             type:'select',
-            options:FormUtils.range(1, 5, 1, '年').prefix(),
+            options:FormUtils.range(1, 5, 1, '年').prefix({label: '以后告诉你', value: '-1'}),
             rule:'required'
         }, {
             id:'child_count',
             label:'要几个小孩',
             type:'select',
-            options:FormUtils.range(0, 3, 1, '个').prefix(),
+            options:FormUtils.range(0, 3, 1, '个').prefix({label: '无所谓', value: '无所谓'}),
             rule:'required'
         }, {
             id:'hobby',
