@@ -54,7 +54,7 @@ class PhotoController extends RestCommonController {
         }
         // Create target dir
         if (!file_exists($uploadDir)) {
-            @mkdir($uploadDir);
+            @mkdir($uploadDir, 0777, true);
         }
         // Get a file name
 //        if (isset($_REQUEST["name"])) {
