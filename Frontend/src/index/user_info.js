@@ -88,7 +88,7 @@ export default class UserList extends React.Component {
                             return <Cell key={cell.id}> <CellBody>{cell.label}</CellBody> <CellFooter>{cell.value}</CellFooter> </Cell>
                         })}
                     </Cells>
-                    <CellsTitle>·(可多选)</CellsTitle>
+                    <CellsTitle>择偶要求</CellsTitle>
                     <Cells>
                         {result.standard.map((cell) => {
                             return <Cell key={cell.id}> <CellBody>{cell.label}</CellBody> <CellFooter>{cell.value}</CellFooter> </Cell>
