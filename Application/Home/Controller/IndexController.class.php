@@ -18,7 +18,9 @@ class IndexController extends Controller {
     }
 
     public function index(){
-        // cookie('wechat_id', 'o0-6is-a4s2ASj6xz25z7BPdxONY');
+        if (FE_DEBUG) {
+            cookie('wechat_id', 'o0-6is-a4s2ASj6xz25z7BPdxONY');
+        }
         if(!$this->_is_wechat() || !cookie('wechat_id')){
             $this->redirect('index/error');
             exit();
@@ -27,6 +29,9 @@ class IndexController extends Controller {
     }
 
     private function _is_wechat(){
+        if (FE_DEBUG) {
+            return true;
+        }
         $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
         if(strpos($ua, 'micromessenger') !== false) return true;
         return false;

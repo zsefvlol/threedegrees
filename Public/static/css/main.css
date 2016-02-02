@@ -11,7 +11,8 @@ h1, .h1, .f1 {
     line-height: 3rem;
 }
 .vh100 {
-    height: 100vh;
+    height: 100%;
+    position: absolute;
 }
 .mt2 {
     margin-top: 2rem;
@@ -64,7 +65,7 @@ h1, .h1, .f1 {
     text-overflow: ellipsis;
 }
 .vw40 {
-    width: 40vw;
+    width: 40%;
 }
 .fl {
     float: left;

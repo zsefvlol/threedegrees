@@ -9,6 +9,7 @@ import Join from './join';
 import UserCenter from './user_center';
 import UserList from './user_list';
 import UserInfo from './user_info';
+import '../lib/Polyfill';
 
 class App extends React.Component {
 
@@ -19,22 +20,27 @@ class App extends React.Component {
     }
 
     render() {
-        return (
+        return pageData.profile.user_info.is_single != -1 ? (
             <UserCenter />
-        );
+        ) : null;
     }
 }
 
 function entry() {
-    document.getElementById('loadingPage').remove();
-    render((
-      <Router>
-        <Route path="/" component={App} />
-        <Route path="join" component={Join} />
-        <Route path="users" component={UserList} />
-        <Route path="user/:id" component={UserInfo} />
-      </Router>
-    ), document.getElementById('container'))
+    try{
+        document.getElementById('loadingPage').remove();
+        render((
+          <Router>
+            <Route path="/" component={App} />
+            <Route path="join" component={Join} />
+            <Route path="users" component={UserList} />
+            <Route path="user/:id" component={UserInfo} />
+          </Router>
+        ), document.getElementById('container'))
+    } catch(err) {
+        alert(err);
+    }
+
 }
 
 Ajax.get('/api/user/profile').end((err, res) => {
