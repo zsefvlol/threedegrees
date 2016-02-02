@@ -4,6 +4,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import WeUI from 'react-weui';
+import { Link } from 'react-router'
 import UserListItem from './user_list_item';
 import Ajax from '../lib/Ajax';
 const {Cells, CellsTitle, CellBody, Cell, Button, CellFooter} = WeUI;
@@ -43,6 +44,13 @@ export default class UserList extends React.Component {
                 </CellBody>
             </Cell>
             {lists}
+            <Cell className="list_item">
+                <CellBody>
+                    <Link to="/">
+                        <Button type="default">个人中心</Button>
+                    </Link>
+                </CellBody>
+            </Cell>
         </section>);
     }
 
