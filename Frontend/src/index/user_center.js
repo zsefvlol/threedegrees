@@ -30,8 +30,8 @@ export default class UserCenter extends React.Component {
                     </div>
                 </CellBody>
             </Cell>
-            <UserList list_title="我喜欢的" empty_notice="" user_list={this.state.profile.i_like} />
-            <UserList list_title="喜欢我的" empty_notice="" user_list={this.state.profile.like_me} />
+            <UserList list_title="我喜欢的" empty_notice="" user_list={this.state.profile.i_like} return_to_user_center_btn={false} />
+            <UserList list_title="喜欢我的" empty_notice="" user_list={this.state.profile.like_me} return_to_user_center_btn={false} />
             <InviteList user_info={this.state.profile} />
         </section>);
     }

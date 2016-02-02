@@ -14,7 +14,8 @@ export default class UserList extends React.Component {
     state = {
         list_title: this.props.list_title || '异性列表页',
         empty_notice: this.props.empty_notice || '',
-        user_list: this.props.user_list || this.getUsers()
+        user_list: this.props.user_list || this.getUsers(),
+        return_to_user_center_btn: this.props.return_to_user_center_btn || true
     };
 
     getUsers() {
@@ -37,13 +38,7 @@ export default class UserList extends React.Component {
                 </CellBody>
             </Cell>
         );
-        return (<section>
-            <Cell className="list_item">
-                <CellBody>
-                    <h2 className="title"><b>{this.state.list_title}</b></h2>
-                </CellBody>
-            </Cell>
-            {lists}
+        let return_btn = this.state.return_to_user_center_btn ? (
             <Cell className="list_item">
                 <CellBody>
                     <Link to="/">
@@ -51,6 +46,14 @@ export default class UserList extends React.Component {
                     </Link>
                 </CellBody>
             </Cell>
+        ) : '';
+        return (<section>
+            <Cell className="list_item">
+                <CellBody>
+                    <h2 className="title"><b>{this.state.list_title}</b></h2>
+                </CellBody>
+            </Cell>
+            {lists}
         </section>);
     }
 
