@@ -9,16 +9,18 @@ class PhotoController extends RestCommonController {
     public function upload_post(){
         if(!$this->uid)
             $this->responseError(new CommonException('200102'));
-        $userInfo = Privilege::isValidUser($this->uid);
-        if(!$userInfo) $this->responseError(new CommonException('200101'));
+        $fromUser = D('User')->find($this->uid);
+        if($fromUser['verified'] != 1)
+            $this->responseError(new CommonException('200101'));
         $this->do_upload();
     }
 
     public function remove_get(){
         if(!$this->uid)
             $this->responseError(new CommonException('200102'));
-        $userInfo = Privilege::isValidUser($this->uid);
-        if(!$userInfo) $this->responseError(new CommonException('200101'));
+        $fromUser = D('User')->find($this->uid);
+        if($fromUser['verified'] != 1)
+            $this->responseError(new CommonException('200101'));
         D('Photo')->where(array('pid'=>I('get.pid',-1,'intval'),'uid'=>$this->uid))->save(array('status'=>0));
         $this->responseSuccess(array('result'=>1));
     }
