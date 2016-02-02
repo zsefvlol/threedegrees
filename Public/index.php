@@ -1,6 +1,6 @@
 <?php
 
-define('APP_DEBUG',True);
+define('APP_DEBUG',!in_array($_SERVER['HTTP_HOST'],array('love.lolwen.com','love.mengtian.win')));
 define('DOCUMENT_ROOT', dirname(__FILE__));
 define('SITE_PREFIX', 'threedegrees_' );
 define('SITE_TITLE', 'ThreeDegrees' );
