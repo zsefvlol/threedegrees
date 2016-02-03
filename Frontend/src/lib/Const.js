@@ -179,7 +179,7 @@ const schemas = [
             id:'r_age[不限]',
             label:'不限',
             type:'checkbox',
-            default: true,
+            default: 'checked',
             value:'不限'
         }, {
             id:'r_age[22-25岁]',
@@ -209,7 +209,7 @@ const schemas = [
             id:'r_height[不限]',
             label:'不限',
             type:'checkbox',
-            default: true,
+            default: 'checked',
             value:'不限'
         }, {
             id:'r_height[150-160]',
@@ -239,7 +239,7 @@ const schemas = [
             id:'r_education[不限]',
             label:'不限',
             type:'checkbox',
-            default: true,
+            default: 'checked',
             value:'不限'
         }, {
             id:'r_education[本科以上]',
@@ -264,7 +264,7 @@ const schemas = [
             id:'r_income[不限]',
             label:'不限',
             type:'checkbox',
-            default: true,
+            default: 'checked',
             value:'不限'
         }, {
             id:'r_income[2000-5000]',
