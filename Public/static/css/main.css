@@ -7,7 +7,7 @@ body {
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 #container{
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 h1, .h1, .f1 {
     font-size: 2rem;

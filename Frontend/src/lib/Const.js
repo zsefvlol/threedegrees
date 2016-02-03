@@ -284,7 +284,7 @@ const schemas = [
             value:'20000以上'
         }]
     }, {
-        label:'工作或居住地',
+        label:'工作居住地',
         properties:[{
             id:'r_location',
             label:'',
