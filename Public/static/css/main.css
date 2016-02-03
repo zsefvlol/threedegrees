@@ -126,6 +126,9 @@ h1, .h1, .f1 {
 .relation_list:before{
     border: none !important;
 }
-.min-width-30{
-    min-width: 100px;
+.cell-body-min-width{
+    min-width: 120px;
+}
+.cell-footer-fix-width{
+    width: 100%;
 }

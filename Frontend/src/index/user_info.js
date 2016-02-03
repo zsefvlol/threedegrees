@@ -118,13 +118,13 @@ export default class UserList extends React.Component {
                     <CellsTitle>个人信息</CellsTitle>
                     <Cells>
                         {result.info.map((cell) => {
-                            return <Cell key={cell.id}> <CellBody className="min-width-30">{cell.label}</CellBody> <CellFooter>{cell.value}</CellFooter> </Cell>
+                            return <Cell key={cell.id}> <CellBody className="cell-body-min-width">{cell.label}</CellBody> <CellFooter className="cell-footer-fix-width">{cell.value}</CellFooter> </Cell>
                         })}
                     </Cells>
                     <CellsTitle>择偶要求</CellsTitle>
                     <Cells>
                         {result.standard.map((cell) => {
-                            return <Cell key={cell.id}> <CellBody className="min-width-30">{cell.label}</CellBody> <CellFooter>{cell.value}</CellFooter> </Cell>
+                            return <Cell key={cell.id}> <CellBody className="cell-body-min-width">{cell.label}</CellBody> <CellFooter className="cell-footer-fix-width">{cell.value}</CellFooter> </Cell>
                         })}
                     </Cells>
                     <CellsTitle>个人照片</CellsTitle>

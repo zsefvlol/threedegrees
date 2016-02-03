@@ -5,7 +5,7 @@ import 'weui';
 
 const {ButtonArea, Button, Cells, CellsTitle, CellsTips, Cell, CellHeader, CellBody, CellFooter} = WeUI;
 
-class MyForm extends Component {
+export default class MyForm extends Component {
   static propTypes = {
     schema: React.PropTypes.array.isRequired,
     form: React.PropTypes.object.isRequired,
