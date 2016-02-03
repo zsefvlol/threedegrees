@@ -38,7 +38,6 @@ export default class UserList extends React.Component {
                 </CellBody>
             </Cell>
         );
-        console.log(this.state.disable_return);
         let return_btn = !this.state.disable_return ? (
             <Cell className="list_item">
                 <CellBody>
