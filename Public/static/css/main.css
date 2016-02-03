@@ -122,7 +122,7 @@ h1, .h1, .f1 {
     padding: 2px 2px;
 }
 .relation_list:before{
-    border: none;
+    border: none !important;
 }
 .weui_cell_primary{
     min-width: 30%;
