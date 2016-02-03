@@ -126,12 +126,14 @@ const schemas = [
             id:'smoking',
             label:'吸烟',
             type:'select',
+            default: '从不',
             options:FormUtils.combine(['从不', '很少', '一般', '经常']).get(),
             rule:'required'
         }, {
             id:'drinking',
             label:'喝酒',
             type:'select',
+            default: '从不',
             options:FormUtils.combine(['从不', '很少', '一般', '经常']).get(),
             rule:'required'
         }, {
@@ -144,12 +146,14 @@ const schemas = [
             id:'year_before_marriage',
             label:'几年内结婚',
             type:'select',
+            default: -1,
             options:FormUtils.range(1, 5, 1, '年').prefix({label: '以后告诉你', value: '-1'}),
             rule:'required'
         }, {
             id:'child_count',
             label:'要几个小孩',
             type:'select',
+            default: '无所谓',
             options:FormUtils.range(0, 3, 1, '个').prefix({label: '无所谓', value: '无所谓'}),
             rule:'required'
         }, {
