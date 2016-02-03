@@ -5,4 +5,4 @@
 .vw40{width:40%}.fl{float:left}.fr{float:right}.clearfix{overflow:hidden}.weui_cell .weui_select{padding-left:64px}.weui_cell .weui_label{width:6em}.hd{padding:2em 0}
 .hd .title{text-align:center;font-size:34px;color:#3cc51f;font-weight:400;margin:0 15%}.hd .sub_title{text-align:center;color:#888;font-size:14px}.weui_cell.bdt0:before{border-top:0}
 .bottomBtns{width:9rem;margin:5px auto}.barWrapper{padding-bottom:65px}.bottomBar{width:100%;position:fixed;bottom:0;background:white}.relation_list{font-size:14px;border:0;padding:2px 2px}
-.relation_list:before{border:0 !important;}.min-width-30{min-width:30%;}
+.relation_list:before{border:0 !important;}.min-width-30{min-width:100px;}
