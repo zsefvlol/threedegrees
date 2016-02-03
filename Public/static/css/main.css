@@ -119,7 +119,7 @@ h1, .h1, .f1 {
 .relation_list{
     font-size: 14px;
     border: none;
-    padding: 2px 2px;
+    padding: 2px 2px !important;
 }
 .relation_list:before{
     border: none !important;
