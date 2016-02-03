@@ -45,6 +45,10 @@ export default class Doge extends React.Component {
         });
     }
 
+    componentDidUpdate() {
+        ReactDOM.findDOMNode(this).scrollIntoView();
+    }
+
     getSchema() {
         let schema = schemas[this.state.step];
         schema.forEach((item) => {
