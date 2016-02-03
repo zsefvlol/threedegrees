@@ -39,6 +39,7 @@ function entry() {
         ), document.getElementById('container'))
     } catch(err) {
         alert(err);
+        throw(err);
     }
 
 }

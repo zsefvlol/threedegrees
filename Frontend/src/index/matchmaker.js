@@ -26,7 +26,7 @@ export default class Doge extends React.Component {
         schema.forEach((item) => {
             item.properties.forEach((control) => {
                 let id = control.id;
-                control.default = window.pageData.profile.user_info[id] || control.default || 'demo';
+                control.default = window.pageData.profile.user_info[id] || control.default;
                 if (id === 'current_location' && !control.default) {
                     let loc_str = window.pageData.profile.user_info.loc.join(' ');
                     control.default = loc_str;
