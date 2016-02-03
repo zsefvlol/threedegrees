@@ -65,7 +65,7 @@ class PhotoController extends RestCommonController {
 //        } else {
 //            $fileName = uniqid("file_");
 //        }
-        $fileName = uniqid("pic_").'.jpg';;
+        $fileName = uniqid("pic_").'.jpg';
         $md5File = @file($uploadBaseDir.'md5list2.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         $md5File = $md5File ? $md5File : array();
         if (isset($_REQUEST["md5"]) && array_search($_REQUEST["md5"], $md5File ) !== FALSE ) {

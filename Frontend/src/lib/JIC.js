@@ -57,13 +57,11 @@ var jic = {
 
         upload: function(compressed_img_obj, upload_url, file_input_name, filename, successCallback, errorCallback, duringCallback, customHeaders){
 
-
-            var cvs = document.createElement('canvas');
-            cvs.width = compressed_img_obj.naturalWidth;
-            cvs.height = compressed_img_obj.naturalHeight;
-            var ctx = cvs.getContext("2d").drawImage(compressed_img_obj, 0, 0);
-            
-            //ADD sendAsBinary compatibilty to older browsers
+            var type = "image/jpeg";
+            var data = '';
+            if(filename.substr(-4)==".png"){
+                type = "image/png";
+            }
             if (XMLHttpRequest.prototype.sendAsBinary === undefined) {
                 XMLHttpRequest.prototype.sendAsBinary = function(string) {
                     var bytes = Array.prototype.map.call(string, function(c) {
@@ -72,13 +70,16 @@ var jic = {
                     this.send(new Uint8Array(bytes).buffer);
                 };
             }
-
-            var type = "image/jpeg";
-            if(filename.substr(-4)==".png"){
-                type = "image/png";
+            if (typeof compressed_img_obj !== 'string') {
+                var cvs = document.createElement('canvas');
+                cvs.width = compressed_img_obj.naturalWidth;
+                cvs.height = compressed_img_obj.naturalHeight;
+                var ctx = cvs.getContext("2d").drawImage(compressed_img_obj, 0, 0);
+                //ADD sendAsBinary compatibilty to older browsers
+                data = cvs.toDataURL(type);
+            } else {
+                data = compressed_img_obj;
             }
-
-            var data = cvs.toDataURL(type);
             data = data.replace('data:' + type + ';base64,', '');
             
             var xhr = new XMLHttpRequest();
@@ -102,7 +103,7 @@ var jic = {
                 }
             };
         }
-        
+
             xhr.sendAsBinary(['--' + boundary, 'Content-Disposition: form-data; name="' + file_input_name + '"; filename="' + filename + '"', 'Content-Type: ' + type, '', atob(data), '--' + boundary + '--'].join('\r\n'));
             
             xhr.onreadystatechange = function() {

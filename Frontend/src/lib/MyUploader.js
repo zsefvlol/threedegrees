@@ -25,6 +25,7 @@ export default class MyUploader extends React.Component {
 
         const minSize = 1E6;
         var file = e.target.files[0];
+        console.log(file);
         var quality = file.size > minSize ? parseInt((minSize / file.size) * 100) : 100;
         var options = {
             noRevoke: true,
@@ -37,7 +38,12 @@ export default class MyUploader extends React.Component {
            loadImage(
                file,
                (img) => {
-                   var compressd = jic.compress(img, quality, 'jpg');
+                    var compressd = jic.compress(img, quality, 'jpg', 800);
+                    jic.upload(compressd, window._BASE_+'/api/photo/upload.json', 'file', file.name,
+                        (res) => {
+                            console.log(res);
+                        }
+                    );
                    this.state.photos.push({
                        pid: file.lastModified,
                        status: 'uploading',
@@ -49,6 +55,9 @@ export default class MyUploader extends React.Component {
            );
        });
     }
+
+
+
 
     errorHandler = (err) => {
         this.setState({
