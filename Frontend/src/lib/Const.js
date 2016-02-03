@@ -58,18 +58,20 @@ const schemas = [
             options:FormUtils.combine(constellations).prefix()
         }, {
             id:'height',
-            label:'身高',
-            default: -1,
-            type:'select',
-            rule:'required',
-            options:FormUtils.range(150, 190, 5, 'cm').prefix({label: '以后告诉你', value: '-1'})
+            label:'身高(cm)',
+            type:'number',
+            //default: -1,
+            //type:'select',
+            rule:'required'
+            //options:FormUtils.range(150, 190, 5, 'cm').prefix({label: '以后告诉你', value: '-1'})
         }, {
             id:'weight',
-            label:'体重',
-            default: -1,
-            type:'select',
-            rule:'required',
-            options:FormUtils.range(40, 100, 10, 'kg').prefix({label: '以后告诉你', value: '-1'})
+            label:'体重(kg)',
+            type:'number',
+            //default: -1,
+            //type:'select',
+            rule:'required'
+            //options:FormUtils.range(40, 100, 10, 'kg').prefix({label: '以后告诉你', value: '-1'})
         }, {
             id:'current_location',
             label:'当前所在地',
