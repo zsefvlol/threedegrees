@@ -3,6 +3,7 @@ namespace Api\Controller;
 
 use Api\Exception\CommonException;
 use Common\Util\Privilege;
+use Think\Image;
 
 class PhotoController extends RestCommonController {
 
@@ -126,6 +127,10 @@ class PhotoController extends RestCommonController {
         }
 
         // Return Success JSON-RPC response
+        $img = new Image();
+        $img->open($uploadPath);
+        $img->thumb(800,800);
+        $img->save($uploadPath);
         $file_path = strtr($uploadPath, array(DOCUMENT_ROOT => '', '\\' => '/'));
         $photoData = array(
             'uid'   =>  $this->uid,
