@@ -124,3 +124,6 @@ h1, .h1, .f1 {
 .relation_list:before{
     border: none;
 }
+.weui_cell_primary{
+    min-width: 30%;
+}
