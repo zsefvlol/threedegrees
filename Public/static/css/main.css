@@ -62,10 +62,12 @@ h1, .h1, .f1 {
     font-size: 14px;
     display: -webkit-box;
     max-width: 100%;
-    -webkit-line-clamp: 2;
+    /*-webkit-line-clamp: 2;*/
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
+    word-break: break-all;
+    word-wrap: break-word;
+    /*text-overflow: ellipsis;*/
 }
 .vw40 {
     width: 40%;
@@ -119,8 +121,11 @@ h1, .h1, .f1 {
 .relation_list{
     font-size: 14px;
     border: none;
-    padding: 2px 2px;
+    padding: 2px 2px !important;
 }
 .relation_list:before{
-    border: none;
+    border: none !important;
+}
+.min-width-30{
+    min-width: 100px;
 }
