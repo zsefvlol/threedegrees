@@ -104,6 +104,10 @@ export default class UserList extends React.Component {
             </section>)
         }.bind(this));
 
+        let like_btn = window.pageData.profile.user_info.is_single == 1 ? (
+            <Like className="fl" target={this.state.profile} />
+        ) : '';
+
         return (
             <div className="barWrapper">
                 <div>
@@ -131,7 +135,7 @@ export default class UserList extends React.Component {
                 </div>
                 <div className="bottomBar">
                     <div className="clearfix bottomBtns">
-                        <Like className="fl" target={this.state.profile} />
+                        {like_btn}
                         <Goback className="fr" target={this.state.profile} />
                     </div>
                 </div>
