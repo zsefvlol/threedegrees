@@ -2,7 +2,7 @@
 "use strict";
 
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import MyForm from '../lib/MyForm';
 import MyUploder from '../lib/MyUploader';
 import { schemas } from '../lib/Const';
@@ -47,6 +47,7 @@ export default class Doge extends React.Component {
 
     componentDidUpdate() {
         ReactDOM.findDOMNode(this).scrollIntoView();
+        ReactDOM.findDOMNode(this).scrollTop = 0;
     }
 
     getSchema() {
