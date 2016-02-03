@@ -1,7 +1,7 @@
 <?php
 
 define('APP_DEBUG', true);
-define('FE_DEBUG', true);
+define('FE_DEBUG', false);
 define('DOCUMENT_ROOT', dirname(__FILE__));
 define('SITE_PREFIX', 'threedegrees_' );
 define('SITE_TITLE', 'ThreeDegrees' );
