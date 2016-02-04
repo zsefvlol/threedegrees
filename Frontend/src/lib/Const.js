@@ -181,10 +181,10 @@ const schemas = [
             type:'checkbox',
             value:'不限'
         }, {
-            id:'r_age[22-25岁]',
-            label:'22-25岁',
+            id:'r_age[20-25岁]',
+            label:'20-25岁',
             type:'checkbox',
-            value:'22-25岁'
+            value:'20-25岁'
         }, {
             id:'r_age[25-30岁]',
             label:'25-30岁',

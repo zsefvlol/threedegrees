@@ -69,6 +69,9 @@ export default class Doge extends React.Component {
                 } else {
                     let id = control.id;
                     let info = window.pageData.profile.user_info[id];
+                    if (info === '0000-00-00') {
+                        info = '1990-01-01';
+                    }
                     control.default = info || control.default;
                     if (id === 'current_location' && window.pageData.profile.user_info.loc && !control.default) {
                         let loc_str = window.pageData.profile.user_info.loc.join(' ');
