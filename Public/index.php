@@ -1,6 +1,6 @@
 <?php
 
-define('APP_DEBUG', true);
+define('APP_DEBUG', false);
 define('FE_DEBUG', false);
 define('DOCUMENT_ROOT', dirname(__FILE__));
 define('SITE_PREFIX', 'threedegrees_' );

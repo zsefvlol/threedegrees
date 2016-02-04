@@ -5,12 +5,15 @@ use Think\Controller;
 
 class IndexController extends Controller {
 
-    public function _empty(){
-        exit();
+    public function _initialize(){
+        if(ACTION_NAME == 'error'){
+            $this->display('Index:error');
+            exit();
+        }
     }
 
-    public function error(){
-        $this->display();
+    public function _empty(){
+        exit();
     }
 
     public function term(){
