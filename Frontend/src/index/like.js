@@ -51,8 +51,8 @@ export default class Like extends React.Component {
 
     clickHandle = () => {
         let action = this.state.liked ? 'dislike' : 'like';
-        this.setState({liked: !this.state.liked});
         Ajax.get(`/api/like/${action}/uid/${this.props.target.uid}`).end((err, res) => {
+            this.setState({liked: !this.state.liked});
             this.setLikeData();
             this.setState({showAlert: true});
         })
