@@ -14,7 +14,7 @@ export default class MyUploader extends React.Component {
 
     state = {
         photos: this.props.photos ? this.props.photos.map((photo) => {
-            photo.src = window._BASE_ + photo.file_path;
+            photo.src = photo.src || window._BASE_ + photo.file_path;
             photo.status = 'done';
             return photo;
         }) : [],
@@ -75,6 +75,7 @@ export default class MyUploader extends React.Component {
                         photo.status = 'done';
                         this.setState({photos: this.state.photos});
                         this.props.parent.setState({holding: false});
+                        window.pageData.profile.photo = this.state.photos;
                     }
                     try {
                         jic.upload(
@@ -104,6 +105,7 @@ export default class MyUploader extends React.Component {
                 showToast: true,
                 photos: this.state.photos
             })
+            window.pageData.profile.photo = this.state.photos;
             this.state.toastTimer = setTimeout(()=> {
                 this.setState({showToast: false});
             }, 1000);
