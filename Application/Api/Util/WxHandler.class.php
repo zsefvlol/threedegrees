@@ -32,7 +32,7 @@ class WxHandler{
             //当前仅允许1度邀请12个人
             'allow_invite_count'    =>  $degree == 1 ? 12 : 0,
         ));
-        ImWx::fetchTextResult('验证成功。请进入'.self::generateEntryUrl().'。');
+        ImWx::fetchTextResult('验证成功。首次进入填写的资料包括您的【微信号】，请先记好哦~进入'.self::generateEntryUrl().'。');
     }
 
     public static function generateEntryUrl($text = '个人中心'){
