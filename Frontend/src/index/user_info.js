@@ -69,14 +69,16 @@ export default class UserList extends React.Component {
             items.push({
                 src: url,
                 thumbnail: url,
-                w: 1200,
-                h: 900
+                w: photo.w,
+                h: photo.h
             });
         });
 
         let getThumbnailContent = (item) => {
+            let thumbW = item.w / 20 * 3 ;
+            let thumbH = item.h / 20 * 3;
             return (
-                <img src={item.thumbnail} width={120} height={90}/>
+                <img src={item.thumbnail} width={thumbW} height={thumbH}/>
             );
         };
 

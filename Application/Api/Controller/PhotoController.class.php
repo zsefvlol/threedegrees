@@ -131,11 +131,14 @@ class PhotoController extends RestCommonController {
         $img->open($uploadPath);
         $img->thumb(800,800);
         $img->save($uploadPath);
+        $imgSize = $img->size();
         $file_path = strtr($uploadPath, array(DOCUMENT_ROOT => '', '\\' => '/'));
         $photoData = array(
             'uid'   =>  $this->uid,
             'file_path' =>  $file_path,
             'status'    =>  1,
+            'w'         =>  $imgSize[0],
+            'h'         =>  $imgSize[1],
         );
         $pid = D('Photo')->add($photoData);
         $this->responseSuccess(compact('pid') + $photoData);
