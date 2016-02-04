@@ -150,7 +150,8 @@ class UserController extends RestCommonController {
             foreach ($myInvites as $value)
                 if($value['to_uid'])
                     $myInviteUids[] = $value['to_uid'];
-            $filter['uid'] = array('in',$myInviteUids);
+            if($myInviteUids) $filter['uid'] = array('in',$myInviteUids);
+            else $this->responseSuccess(array());
         }else{
             //单身不允许访问同性
             $filter['gender'] = $fromUser['user_info']['gender'] == '男' ? '女' : '男';
