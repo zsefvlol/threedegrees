@@ -10,13 +10,15 @@ module.exports = {
     entry: fs.readdirSync(srcPath).reduce(function (entries, dir) {
     if (dir !== 'lib' && fs.statSync(path.join(srcPath, dir)).isDirectory())
         entries[dir] = [
+            'webpack-dev-server/client?http://localhost:8080',
+            'webpack/hot/dev-server',
             path.join(srcPath, dir, 'app.js')
     ]
     return entries
     }, {}),
     output: {
         path: path.resolve(__dirname, '../Public/static/js'),
-        publicPath: '/static/js/',
+        publicPath: 'http://localhost:8080/static/js/',
         filename: '[name].js',
         chunkFilename: '[id].chunk.js'
     },
@@ -25,7 +27,7 @@ module.exports = {
             {
                 test: /\.js[x]?$/,
                 exclude: /node_modules/,
-                loader: 'babel'
+                loader: 'react-hot!babel'
             }, {
                 test: /\.less$/,
                 loader: 'style!css!autoprefixer!less'
@@ -40,6 +42,7 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('shared.js'),
+        new webpack.NoErrorsPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: false,
             mangle: false

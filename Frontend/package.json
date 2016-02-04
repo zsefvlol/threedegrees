@@ -4,9 +4,8 @@
   "description": "Repository for WeChat account thethreedegrees.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --host 0.0.0.0 --devtool eval --progress --hot --colors --content-base src",
-    "clean": "rimraf ./lib ./coverage",
-    "build": "npm run clean & babel ./src --out-dir ./lib",
+    "start": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0 --devtool eval --progress --hot --colors --content-base src",
+    "release": "webpack --progress",
     "lint": "eslint 'src/**/*.@(js|jsx)'",
     "test": "npm run lint & mocha --compilers js:babel-core/register --recursive",
     "coverage": "npm run lint & istanbul cover _mocha -- --compilers js:babel-core/register --recursive"
