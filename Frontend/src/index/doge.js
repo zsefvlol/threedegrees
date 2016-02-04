@@ -49,6 +49,11 @@ export default class Doge extends React.Component {
         });
     }
 
+    componentDidMount() {
+        ReactDOM.findDOMNode(this).scrollIntoView();
+        ReactDOM.findDOMNode(this).scrollTop = 0;
+    }
+
     componentDidUpdate() {
         ReactDOM.findDOMNode(this).scrollIntoView();
         ReactDOM.findDOMNode(this).scrollTop = 0;

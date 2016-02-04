@@ -20,7 +20,14 @@ class UserModel extends Model{
 
     public function createUserInfoItem($uid){
         if(!$uid) return;
-        if(!D('UserInfo')->find($uid)) D('UserInfo')->add(array('uid'=>$uid,'is_single'=>-1));
+        if(!D('UserInfo')->find($uid))
+            D('UserInfo')->add(array(
+                'uid'   =>  $uid,
+                'birthday'  =>  '1990-01-01',
+                'height'  =>  150,
+                'weight'  =>  60,
+                'is_single' =>  -1
+            ));
     }
 
 }
