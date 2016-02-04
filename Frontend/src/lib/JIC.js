@@ -54,12 +54,7 @@ var jic = {
      * @param {Object} (OPTIONAL) customHeaders An object representing key-value  properties to inject to the request header.
      */
     upload: function(compressed_img_obj, upload_url, file_input_name, filename, successCallback, errorCallback, duringCallback, customHeaders){
-
-        var type = "image/jpeg";
         var data = '';
-        if(filename.substr(-4)==".png"){
-            type = "image/png";
-        }
         if (XMLHttpRequest.prototype.sendAsBinary === undefined) {
             XMLHttpRequest.prototype.sendAsBinary = function(string) {
                 var bytes = Array.prototype.map.call(string, function(c) {
@@ -73,13 +68,12 @@ var jic = {
             cvs.width = compressed_img_obj.naturalWidth;
             cvs.height = compressed_img_obj.naturalHeight;
             var ctx = cvs.getContext("2d").drawImage(compressed_img_obj, 0, 0);
-            //ADD sendAsBinary compatibilty to older browsers
             data = cvs.toDataURL(type);
         } else {
             data = compressed_img_obj;
         }
-        data = data.replace('data:' + type + ';base64,', '');
-        
+        var type = data.match(/data:(\S+);/)[1];
+        data = data.replace(/^[^,]+,/, '');
         var xhr = new XMLHttpRequest();
         xhr.open('POST', upload_url, true);
         var boundary = 'someboundary';
@@ -116,15 +110,23 @@ var jic = {
                 return text;
             }
         }
-
+        var decodeBase64 = function(s) {
+            var e={},i,b=0,c,x,l=0,a,r='',w=String.fromCharCode,L=s.length;
+            var A="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+            for(i=0;i<64;i++){e[A.charAt(i)]=i;}
+            for(x=0;x<L;x++){
+                c=e[s.charAt(x)];b=(b<<6)+c;l+=6;
+                while(l>=8){((a=(b>>>(l-=8))&0xff)||(x<(L-2)))&&(r+=w(a));}
+            }
+            return r;
+        };
         xhr.onload = function onload() {
             if (xhr.status !== 200) {
                 return errorCallback(xhr);
             }
             successCallback(getBody(xhr));
         };
-
-        xhr.sendAsBinary(['--' + boundary, 'Content-Disposition: form-data; name="' + file_input_name + '"; filename="' + filename + '"', 'Content-Type: ' + type, '', atob(data), '--' + boundary + '--'].join('\r\n'));
+        xhr.sendAsBinary(['--' + boundary, 'Content-Disposition: form-data; name="' + file_input_name + '"; filename="' + filename + '"', 'Content-Type: ' + type, '', decodeBase64(data), '--' + boundary + '--'].join('\r\n'));
     }
 };
 

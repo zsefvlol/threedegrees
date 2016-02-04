@@ -134,6 +134,5 @@ h1, .h1, .f1 {
 }
 .remove_img_btn.weui_icon_cancel:before {
     color: #7E7E7E;
-    float: right;
     margin: 3px 3px;
 }

@@ -30,6 +30,7 @@ export default class MyUploader extends React.Component {
 
 
     startUpload = (e) => {
+        this.props.parent.setState({holding: true});
         const minSize = 1E6;
         var file = e.target.files[0];
         var quality = file.size > minSize ? parseInt((minSize / file.size) * 100) : 100;
@@ -52,8 +53,9 @@ export default class MyUploader extends React.Component {
                     this.state.photos.push(photo);
                     this.setState({photos: this.state.photos});
                     var duringCallback = (e) => {
-                        photo.percent = e.percent;
+                        photo.percent = parseInt(e.percent);
                         this.setState({photos: this.state.photos});
+                        this.props.parent.setState({holding: false});
                     }
                     var errorCallback = (err) => {
                         photo.status = 'error';
@@ -61,7 +63,8 @@ export default class MyUploader extends React.Component {
                             photos: this.state.photos,
                             showAlert: true,
                             alertContent: err.error_message || '未知错误'
-                        })
+                        });
+                        this.props.parent.setState({holding: false});
                     }
                     var successCallback = (res) => {
                         if (res.error_code !== 0) {
@@ -71,17 +74,23 @@ export default class MyUploader extends React.Component {
                         photo.pid = res.data.pid;
                         photo.status = 'done';
                         this.setState({photos: this.state.photos});
+                        this.props.parent.setState({holding: false});
                     }
-                    jic.upload(
-                        compressd,
-                        window._BASE_+'/api/photo/upload.json',
-                        'file',
-                        file.name,
-                        successCallback,
-                        errorCallback,
-                        duringCallback
-                    );
-                    
+                    try {
+                        jic.upload(
+                            compressd,
+                            window._BASE_+'/api/photo/upload.json',
+                            'file',
+                            file.name,
+                            successCallback,
+                            errorCallback,
+                            duringCallback
+                        );
+                    } catch(e) {
+                        alert(e);
+                        this.props.parent.setState({holding: false});
+                        throw(e);
+                    }
                },
                options
            );
@@ -124,14 +133,19 @@ export default class MyUploader extends React.Component {
                                 {
                                     this.state.photos.map((photo, i) => {
                                         let content = null;
-                                        
                                         if (photo.status === 'done') {
-                                            content = (<i onClick={this.removeImg.bind(this, photo, i)} className="weui_icon_cancel remove_img_btn"></i>);
+                                            content = (
+                                                <div className="fr" onClick={this.removeImg.bind(this, photo, i)}>
+                                                    <i className="weui_icon_cancel remove_img_btn"></i>
+                                                </div>
+                                            );
                                         }
                                         else if (photo.status === 'error') {
                                             content = (<i className="weui_icon_warn"></i>);
-                                        } else if (photo.percent && photo.percent < 100) {
-                                            content = photo.percent + '%';
+                                        } else if (photo.percent) {
+                                            content = (photo.percent - 20) + '%';
+                                        } else {
+                                            content = '80%';
                                         }
                                         let className = photo.status === 'done' ? 'weui_uploader_file' : 'weui_uploader_file weui_uploader_status';
                                         return <li key={photo.pid} className={className} style={{backgroundImage: `url(${photo.src})`}}>

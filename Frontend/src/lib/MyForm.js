@@ -332,7 +332,8 @@ export default class MyForm extends Component {
 
   renderActions(){
     return this.props.form.actions.map((action,index)=>{
-      return <Button key={index} type={action.type} onClick={this.handleClick.bind(this,action.onClick)}>{action.label}</Button>
+      return action.disabled ? <Button disabled key={index} type={action.type} onClick={this.handleClick.bind(this,action.onClick)}>{action.label}</Button>
+      : <Button key={index} type={action.type} onClick={this.handleClick.bind(this,action.onClick)}>{action.label}</Button>
     });
   }
   render() {
