@@ -45,7 +45,6 @@
             } else {
                 return false;
             }
-            console.log(url);
             if (url) {
                 img.src = url;
                 return img;

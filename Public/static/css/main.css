@@ -118,17 +118,22 @@ h1, .h1, .f1 {
     bottom: 0;
     background: white;
 }
-.relation_list{
+.relation_list {
     font-size: 14px;
     border: none;
     padding: 2px 2px !important;
 }
-.relation_list:before{
+.relation_list:before {
     border: none !important;
 }
-.cell-body-min-width{
+.cell-body-min-width {
     min-width: 120px;
 }
-.cell-footer-fix-width{
+.cell-footer-fix-width {
     max-width: 180px;
+}
+.remove_img_btn.weui_icon_cancel:before {
+    color: #7E7E7E;
+    float: right;
+    margin: 3px 3px;
 }
