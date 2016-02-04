@@ -50,10 +50,8 @@ export default class Doge extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.state.step > 0) {
-            ReactDOM.findDOMNode(this).scrollIntoView();
-            ReactDOM.findDOMNode(this).scrollTop = 0;
-        }
+        ReactDOM.findDOMNode(this).scrollIntoView();
+        ReactDOM.findDOMNode(this).scrollTop = 0;
     }
 
     getSchema() {
