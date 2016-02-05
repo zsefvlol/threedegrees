@@ -135,7 +135,7 @@ class UserController extends RestCommonController {
 
     public function list_get(){
         $page = I('get.page',1);
-        $limit = I('get.limit',10);
+        $limit = I('get.limit',50);
         if(!$this->uid)
             $this->responseError(new CommonException('200102'));
         $fromUser = Privilege::isValidUser($this->uid);
