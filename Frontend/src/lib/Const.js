@@ -40,8 +40,8 @@ const schemas = [
             id:'wechat_id',
             label:'微信ID',
             type:'text',
-            placeholder:'',
-            rule:'required|between:2,15|string'
+            placeholder:'不是昵称，是用来加好友的号',
+            rule:'required|between:2,50|string'
         }]
     }, {
         label:'详细信息',
