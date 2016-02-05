@@ -30,7 +30,6 @@ export default class MyUploader extends React.Component {
 
 
     startUpload = (e) => {
-        this.props.parent.setState({holding: true});
         const minSize = 1E6;
         var file = e.target.files[0];
         var quality = file.size > minSize ? parseInt((minSize / file.size) * 100) : 100;
@@ -55,7 +54,6 @@ export default class MyUploader extends React.Component {
                     var duringCallback = (e) => {
                         photo.percent = parseInt(e.percent);
                         this.setState({photos: this.state.photos});
-                        this.props.parent.setState({holding: false});
                     }
                     var errorCallback = (err) => {
                         photo.status = 'error';
@@ -64,7 +62,6 @@ export default class MyUploader extends React.Component {
                             showAlert: true,
                             alertContent: err.error_message || '未知错误'
                         });
-                        this.props.parent.setState({holding: false});
                     }
                     var successCallback = (res) => {
                         if (res.error_code !== 0) {
@@ -74,7 +71,6 @@ export default class MyUploader extends React.Component {
                         photo.pid = res.data.pid;
                         photo.status = 'done';
                         this.setState({photos: this.state.photos});
-                        this.props.parent.setState({holding: false});
                         window.pageData.profile.photo = this.state.photos;
                     }
                     try {
@@ -89,7 +85,6 @@ export default class MyUploader extends React.Component {
                         );
                     } catch(e) {
                         alert(e);
-                        this.props.parent.setState({holding: false});
                         throw(e);
                     }
                },

@@ -15,14 +15,10 @@ import UserCenter from './user_center';
 export default class Doge extends React.Component {
 
     state = {
-        step: 0,  // 目前分两步，0是从头开始，2是全部完成
-        holding: false
+        step: 0  // 目前分两步，0是从头开始，2是全部完成
     }
 
     clickHandle = (data) => {
-        if (this.state.holding) {
-            return;
-        }
         if (this.state.step < 1) {
             this.setState({
                 step: this.state.step + 1
@@ -55,10 +51,8 @@ export default class Doge extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.state.step > 0) {
-            ReactDOM.findDOMNode(this).scrollIntoView();
-            ReactDOM.findDOMNode(this).scrollTop = 0;
-        }
+        ReactDOM.findDOMNode(this).scrollIntoView();
+        ReactDOM.findDOMNode(this).scrollTop = 0;
     }
 
     getSchema() {
@@ -96,7 +90,6 @@ export default class Doge extends React.Component {
                 {
                     label:this.state.step ? '完成' : '下一步',
                     type:'primary',
-                    disabled: this.state.holding,
                     onClick: this.clickHandle
                 }
             ]
@@ -105,7 +98,7 @@ export default class Doge extends React.Component {
 
 
     getAppend() {
-        return this.state.step === 0 ? (<MyUploder parent={this} photos={window.pageData.profile.photo} />) : null;
+        return this.state.step === 0 ? (<MyUploder photos={window.pageData.profile.photo} />) : null;
     }
 
     render() {
