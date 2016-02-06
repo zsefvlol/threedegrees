@@ -46,7 +46,7 @@ class Degree{
             $user_info[$user['uid']] = $user;
 
         $result = array();
-        foreach($from_relation_list as $uid) $result[] = $user_info[$uid]['truename'] . '('
+        foreach(array_reverse($from_relation_list) as $uid) $result[] = $user_info[$uid]['truename'] . '('
             . $user_info[$uid]['relation'] . ')';
         $result[] = '小温';
         foreach($to_relation_list as $uid) $result[] = $user_info[$uid]['truename'] . '('
