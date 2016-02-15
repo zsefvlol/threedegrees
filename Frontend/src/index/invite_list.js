@@ -48,7 +48,7 @@ export default class InviteList extends React.Component {
             };
             render(){
                 return this.state.code.to_uid > 0 && this.state.code.is_single == 1?(
-                    <a onClick={this.handleInviteClick.bind(this)}>{this.state.code.truename} ></a>
+                    <p onClick={this.handleInviteClick.bind(this)}>{this.state.code.truename} ></p>
                 ):(
                     <p className="desc">{this.state.code.truename}</p>
                 );
