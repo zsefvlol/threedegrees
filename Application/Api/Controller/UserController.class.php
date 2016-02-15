@@ -47,6 +47,17 @@ class UserController extends RestCommonController {
         $result['like_me'] = $like_me;
         $result['i_like'] = $i_like;
 
+        $like_me_uids = array();
+        $like_each_other = array();
+        foreach($like_me as $k=>$user){
+            $like_me_uids[] = $user['uid'];
+        }
+        foreach($i_like as $k=>$user){
+            if(in_array($user['uid'],$like_me_uids))
+                $like_each_other[] = $user;
+        }
+        $result['like_each_other'] = $like_each_other;
+
         $result['photo'] = D('Photo')->where(array('uid'=>$this->uid,'status'=>1))->select();
         $result['photo'] = $result['photo'] ? $result['photo'] : array();
 

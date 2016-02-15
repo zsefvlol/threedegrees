@@ -38,19 +38,31 @@ export default class InviteList extends React.Component {
     }
 
     render() {
+        class InviteLinkItem extends React.Component{
+            handleInviteClick(e){
+                console.log(this.state);
+                window.location.hash = '#/user/'+this.state.code.to_uid;
+            }
+            state = {
+                code : this.props.code
+            };
+            render(){
+                return this.state.code.to_uid > 0 && this.state.code.is_single == 1?(
+                    <a onClick={this.handleInviteClick.bind(this)}>{this.state.code.truename} ></a>
+                ):(
+                    <p className="desc">{this.state.code.truename}</p>
+                );
+            }
+        }
         let lists = this.state.invite_list.length ? this.state.invite_list.map(function(code){
             if(!code.truename) code.truename = '未使用';
-            function handleClick(e){
-                console.log(e);
-                //@TODO 跳转到详情页
-            }
             return (
-                <Cell className="list_item" onClick={handleClick.bind(this)} key={code.invite_id}>
+                <Cell className="list_item" key={code.invite_id}>
                     <CellBody>
                         <h2 className="title">{code.code}</h2>
                     </CellBody>
                     <CellFooter>
-                        <p className="desc">{code.truename}</p>
+                        <InviteLinkItem code={code} />
                     </CellFooter>
                 </Cell>
             )
